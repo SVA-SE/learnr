@@ -52,6 +52,9 @@ to data summary analysis and plotting in veterinary
 epidemiology. Therefore we expect that you have a knowledge of basic
 statistics.
 
+Participants need to bring ther own computer with the latest version
+of R installed. We recommend that participants also install the
+R-Studio editor.
 
 ## Target audicience
 
@@ -99,6 +102,44 @@ Cover flights for two persons at 500 per person with 16 participants
 Yes
 
 ## Schedule and content
+
+### Day 1
+
+09:00 - 10:30 (1.5h)
+
+* Open an existing dataset in R
+	    * Data from Excel, Stata, and text
+* Data structures in R
+        * What are vectors and a matrices?
+		* What are lists and dataframe?
+10:30 - 11:00 Coffee
+
+11:00 - 12:00 (1.0h)
+
+* Exploring yours data in R
+        * Summarize
+		* Tabulate
+		* Subsetting
+		* Merging
+		* Appending data
+		* Generating new variables
+
+12:00 - 13:00 Lunch
+
+13:00 - 15:00 (2.0h)
+
+* Analysis of data in R, how to complete
+		* Chi-square test
+		* Student T-test
+		* Regression (Linear and Logistic)
+
+
+15:00 - 15:30 Coffee
+
+15:30 - 17:00 (1.5h)
+
+
+### Day 2
 
 09:00 - 10:30 (1.5h)
 
