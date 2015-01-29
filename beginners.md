@@ -27,7 +27,11 @@ and models in R.
 Interest in learning to use R! We will use examples that are related
 to data summary analysis and plotting in veterinary
 epidemiology. Therefore we expect that you have a knowledge of basic
-statistics. 
+statistics.
+
+Participants need to bring ther own computer with the latest version
+of R installed. We recommend that participants also install the
+R-Studio editor. 
 
 
 ## Target audicience
@@ -77,6 +81,27 @@ Yes
 
 ## Schedule and content
 
+### Day 1
+
+09:00 - 10:30 (1.5h)
+
+Lecture and examples 
+
+10:30 - 11:00 Coffee
+
+11:00 - 12:00 (1.0h)
+
+12:00 - 13:00 Lunch
+
+13:00 - 15:00 (2.0h)
+
+15:00 - 15:30 Coffee
+
+15:30 - 17:00 (1.5h)
+
+
+### Day 2
+
 09:00 - 10:30 (1.5h)
 
 10:30 - 11:00 Coffee
@@ -90,3 +115,4 @@ Yes
 15:00 - 15:30 Coffee
 
 15:30 - 17:00 (1.5h)
+
