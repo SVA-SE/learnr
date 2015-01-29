@@ -2,6 +2,18 @@
 
 ## Biography of Thomas and Stefan
 
+Dr. Stefan Widgren is a veterinary epidemiologist at the Swedish
+National Veterinary Institute and a PhD candidate at the Swedish
+University of Agricultural Sciences. Stefan uses R on a daily basis
+since several years and is the author and maintainer of several R
+packages, e.g. *EpiContactTrace*
+(http://cran.r-project.org/web/packages/EpiContactTrace/) and *rmatio*
+(http://cran.r-project.org/web/packages/rmatio/). Stefan is also an
+active member of the rOpenSci community (http://ropensci.org/) where
+he develops and maintains the R package *git2r*
+(https://github.com/ropensci/git2r) to interact with the Git version
+control system from R.
+
 ## Learning obejctives
 
 What the expected knowledge that the participents will gain
