@@ -5,14 +5,23 @@
 Dr. Stefan Widgren is a veterinary epidemiologist at the Swedish
 National Veterinary Institute and a PhD candidate at the Swedish
 University of Agricultural Sciences. Stefan uses R on a daily basis
-since several years and is the author and maintainer of several R
-packages, e.g. *EpiContactTrace*
-(http://cran.r-project.org/web/packages/EpiContactTrace/) and *rmatio*
-(http://cran.r-project.org/web/packages/rmatio/). Stefan is also an
+and is the author and maintainer of several R packages, including *EpiContactTrace*
+(http://cran.r-project.org/web/packages/EpiContactTrace/) a package to
+analyse animal movement data and *rmatio*
+(http://cran.r-project.org/web/packages/rmatio/) a package that reads
+and writes Matlab files in R . Stefan is also an
 active member of the rOpenSci community (http://ropensci.org/) where
 he develops and maintains the R package *git2r*
 (https://github.com/ropensci/git2r) to interact with the Git version
 control system from R.
+
+Dr. Thomas Rosendal is an epidemiologist working at the
+National Veterinary Agency in Sweden. Thomas has a PhD in
+epidemiology from the University of Guelph in Canada and has had a
+focus on analytical epidemiology in his work. Thomas has been a Stata
+user for many years and made the complete switch to R 3 years ago and
+hasn't looked back. Thomas has a specific interest in data visualization with
+R and sees R as both a friend and foe. 
 
 ## Learning obejctives
 
