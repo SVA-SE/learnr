@@ -2,13 +2,36 @@
 
 ## Biography of Thomas and Stefan
 
+## Biography of Thomas and Stefan
+
+Dr. Stefan Widgren is a veterinary epidemiologist at the Swedish
+National Veterinary Institute and a PhD candidate at the Swedish
+University of Agricultural Sciences. Stefan uses R on a daily basis
+and is the author and maintainer of several R packages, including *EpiContactTrace*
+(http://cran.r-project.org/web/packages/EpiContactTrace/) a package to
+analyse animal movement data and *rmatio*
+(http://cran.r-project.org/web/packages/rmatio/) a package that reads
+and writes Matlab files in R . Stefan is also an
+active member of the rOpenSci community (http://ropensci.org/) where
+he develops and maintains the R package *git2r*
+(https://github.com/ropensci/git2r) to interact with the Git version
+control system from R.
+
+Dr. Thomas Rosendal is an epidemiologist working at the
+National Veterinary Agency in Sweden. Thomas has a PhD in
+epidemiology from the University of Guelph in Canada and has had a
+focus on analytical epidemiology in his work. Thomas has been a Stata
+user for many years and made the complete switch to R 3 years ago and
+hasn't looked back. Thomas has a specific interest in data visualization with
+R and sees R as both a friend and foe.
+
 ## Learning obejctives
 
 This course will teach you the basics of data management and  analysis in R. We will
 teach the following concepts:
 
 * What is data in R? Why isn't it just a spreadsheet like in Stata?
-    * Dataframes, vectors, lists and more! 
+    * Dataframes, vectors, lists and more!
 * How to open data in R from other software
     * Stata, SAS, excel, .csv
 * Basic data cleaning and manipulation
@@ -27,7 +50,7 @@ and models in R.
 Interest in learning to use R! We will use examples that are related
 to data summary analysis and plotting in veterinary
 epidemiology. Therefore we expect that you have a knowledge of basic
-statistics. 
+statistics.
 
 
 ## Target audicience
@@ -46,7 +69,7 @@ would like to incorporte R into their work.
 ## History of workshop
 
 - This will be the first time this workshop is being offered. We have
-  given a similar format course on the use of R at the Swedish veterinary institute (SVA). 
+  given a similar format course on the use of R at the Swedish veterinary institute (SVA).
 
 ## WS specification
 
