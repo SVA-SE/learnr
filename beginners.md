@@ -87,49 +87,66 @@ Yes
 
 * Open an existing dataset in R
 	    * Data from Excel, Stata, and text
-* Data structures in R
-        * What are vectors and a matrices?
-		* What are lists and dataframe?
+* Data structure in R
+        * What is a dataframe?
+		* What types of data can you store?
 10:30 - 11:00 Coffee
 
 11:00 - 12:00 (1.0h)
 
-* Exploring yours data in R
+* Exploring and managing your data in R
         * Summarize
 		* Tabulate
 		* Subsetting
 		* Merging
-		* Appending data
+		* Appending
 		* Generating new variables
 
 12:00 - 13:00 Lunch
 
 13:00 - 15:00 (2.0h)
 
-* Analysis of data in R, how to complete
-		* Chi-square test
-		* Student T-test
-		* Regression (Linear and Logistic)
-		
+* Analysis of data in R:
+		* Work through examples from Veterinary Epidemiologic Research
+		in R. 
+        * How do these outputs compare to outputs from Stata?
 
 15:00 - 15:30 Coffee
 
 15:30 - 17:00 (1.5h)
 
+* Introduction to visualization in R
+	* How to plot your data
+* Demonstration of interactive and dynamic plotting and mapping in R
 
 ### Day 2
 
 09:00 - 10:30 (1.5h)
+* How to find and read R documentation
+* R Extensions
+	* How to use and find R extensions
+* Install an extension (package)
 
 10:30 - 11:00 Coffee
 
 11:00 - 12:00 (1.0h)
 
+* Plotting continued:
+	* Plotting using the popular 'ggplot2' package
+
 12:00 - 13:00 Lunch
 
 13:00 - 15:00 (2.0h)
 
+* Communicate you findings with R
+     * Create a report with your analysis results, figures and your
+       interpretation in publication quality layout. 
+
 15:00 - 15:30 Coffee
 
 15:30 - 17:00 (1.5h)
+
+* 
+* Where to find resources for you next step in learning to use R.  
+* Wrap up and question and answer period.
 
