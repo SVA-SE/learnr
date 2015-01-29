@@ -4,33 +4,49 @@
 
 ## Learning obejctives
 
-This course will teach you the basic of data analysis in R. We will
+This course will teach you the basics of data management and  analysis in R. We will
 teach the following concepts:
 
 * What is data in R? Why isn't it just a spreadsheet like in Stata?
-    * Dataframes, vectors, lists and more ! 
+    * Dataframes, vectors, lists and more! 
 * How to open data in R from other software
     * Stata, SAS, excel, .csv
 * Basic data cleaning and manipulation
     * Merging, appending
 	* corrections to data
 	* Generating new variables in a dataset
-* Running and interpreting the output from basic statistical tests
+* Implimenting and interpreting the output from basic statistical tests
 and models in R.
 	* How does the output compare to Stata's output?
 * Plotting in R
-	* Generating plots using base plotting and ggplot
+	* Generating plots using base plotting and ggplot2
 	* Mapping in R, point maps, riskmaps, spatiotemporal map movies
 
 ## Prerequisites (150 words)
 
-You want to learn R.
+Interest in learning to use R! We will use examples that are related
+to data summary analysis and plotting in veterinary
+epidemiology. Therefore we expect that you have a knowledge of basic
+statistics. 
+
 
 ## Target audicience
 
+You are a person who deals with data managment and data analysis.
+
+We expect that you have either:
+
+* never used R before
+* use R for specific tasks that are not possible in Stata, SAS or Excel but
+you prefer to work in one of those software.
+
+This course is for epidemiologists and students in epidemiology that
+would like to incorporte R into their work.
+
 ## History of workshop
 
-- Have you offered the ws before
+- This will be the first time this workshop is being offered. We have
+  given a similar format course on the use of R at the Swedish veterinary institute (SVA). 
 
 ## WS specification
 
@@ -44,7 +60,8 @@ You want to learn R.
 
 100x2$ (Projector + stuff) / day
 
-
+Cover costs @ 225 per person if there are 16 participants
+Cover flights for two persons at 500 per person with 16 participants
 
 ### Min - max attendees
 
@@ -73,13 +90,3 @@ Yes
 15:00 - 15:30 Coffee
 
 15:30 - 17:00 (1.5h)
-
-- Quality of proposal
-
-- Quality of workshop content
-
-- Attracting sufficient number of interest
-
-- Applicat demonstrated to give workshops
-
-- Uniqueness of the WS
