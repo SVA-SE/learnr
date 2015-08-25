@@ -1,0 +1,110 @@
+
+# Introduction to R and the RStudio editor
+    1.  Make sure everyone has the correct software
+    2.  How to enter commands in R
+    3.  Comparison of an R-script and a do-file
+
+
+Before the workshop, we need to make sure everyone has a recent version
+of the R software package and the R-Studio editor. To evaluate R code on a
+computer all you need is R itself; to make the experience easy,
+having a software that talks to R for you makes everything much
+easier. You can find several editors that work with R, but for this
+workshop we have chosen the very popular R-Studio environment.
+
+## Get and install R
+
+	1.  Go to the
+        [https://cran.rstudio.com/](https://cran.rstudio.com/)
+		webpage.
+	2. Click the link that corresponds to your operating system
+
+![Screenshot 01](image1.png)
+
+	3.
+		a. If you're using windows: choose "install R for the first
+		time." (We will cover the steps for Windows but not in detail
+		for Mac or Linux)
+		b. If you're using mac choose the package bases on the version
+		of MacOS you are running and install the package using the
+		package manager
+		c. If you are using Linux then follow to the distribution you
+		are running and follow the instruction on the pages.
+
+![Screenshot 02](image2.png)
+
+	4. Click Download R X.Y.Z for Windows
+
+![Screenshot 03](image3.png)
+
+	5. When the download is complete Click the executable file to run
+       the installer:
+
+![Screenshot 04](image4.png)
+
+	6. You may need to confirm that you want to run the application:
+
+![Screenshot 05](image5.png)
+
+	7. Select English
+
+![Screenshot 06](image6.png)
+
+
+	8. Select Next We'll skip a few popups here. Just click 'next' each time.
+
+![Screenshot 07](image7.png)
+
+	9. When you get to this screen you may wish to select a custom
+	place to put the R software but you can also just accept the
+	default
+
+![Screenshot 08](image8.png)
+
+	10. Choose the 32-bit version (Like the following image)
+        ....unless you know better
+
+![Screenshot 09](image9.png)
+
+	11. Click next until you reach the end of the installation, Click Finish.
+
+
+## Get and install R-Studio
+
+	1. Go to [https://www.rstudio.com/products/rstudio/](https://www.rstudio.com/products/rstudio/)
+
+	2. Click on 'Desktop'
+
+![Screenshot 10](image10.png)
+
+	3. Click on 'Download Rstudio Desktop'
+
+![Screenshot 11](image11.png)
+
+	4. Click on the version that corresponds to your operating
+       system. We'll only cover the steps for Windows:
+
+![Screenshot 12](image12.png)
+
+	5. Runs the installer
+
+![Screenshot 13](image13.png)
+
+	6. Confirm:
+
+![Screenshot 14](image14.png)
+
+	7. Click next
+
+![Screenshot 15](image15.png)
+
+	8. Probably you should just leave the install location the default
+
+![Screenshot 16](image16.png)
+
+	9. Click install without changing anything
+
+![Screenshot 17](image17.png)
+
+	10. Click Finish
+
