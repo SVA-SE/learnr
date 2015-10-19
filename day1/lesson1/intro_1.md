@@ -141,17 +141,18 @@ Let's treat R like it is a simple pocket calculator:
 ![Screenshot 19](image19.png)
 
 You type
-´´´
+```
 1+1
-´´´
+```
 
 And R returns to you the number '2'
 
 Try some other simple arithmetic:
 
-´´´
+```{.R}
 (3*(2+5))/2
-´´´
+```
+
 You should get the answer: 10.5. You'll notice that R respects the
 brackets that you placed in the expression and it follows the normal
 rules of order of operations.
