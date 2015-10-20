@@ -1,0 +1,71 @@
+# Summarizing data in R
+
+Summarizing data means exploring your data in...
+
+* Read in data from comma separated format to a dataframe named
+  'my_data'.
+
+```{r}
+
+my_data <- read.csv("prewmort.csv")
+
+```
+
+* Use the 'str' function to examine the dataframe. This gives you
+  information about the names of the variables in the dataset and the
+  types of data that are in each variable.
+
+```{r}
+
+str(my_data)
+
+```
+
+* Now you can summarize variables in the dataframe. Let's start with a
+  continuous variable. The 'summary' function on the 'lsize' (litter
+  size) variable in the 'my_data' dataframe returns the minimum,
+  maximum, some percentiles and the mean.
+
+```{r}
+
+summary(my_data$lsize)
+
+```
+
+* If you are summarizing a variable that is categorical like
+'herdtype' then 'summary' will not help you at first:
+
+```{r}
+summary(my_data$herdtype)
+```
+
+* If you go back and look at the structure of the 'my_data' dataframe,
+you'll see that each of the variables in the dataframe has a
+data type. In this case they are all: 'int' (integers). When you ask R
+to summarize a numeric variable like an integer then it does what it
+thinks is sensible and returns percentiles and mean. If we let R know
+that the variable we are dealing with is a categorical variable, known
+in R as a 'factor', then it will give us a more useful summary of the
+data.
+
+```{r}
+
+my_data$herdtype <- factor(my_data$herdtype,
+                           levels = c(0,1),
+                           labels = c("type1", "type2"))
+
+summary(my_data$herdtype)
+
+```
+
+* You may notice a few things in the code above. We are assigning
+  values to the 'herdtype' variable in the 'my_data' dataframe using
+  the '<-' arrow. In this case we are replacing existing values. We
+  are using a function: 'factor'. This function has 3 arguments
+	  1. The values (The existing content of the 'herdtype' variable)
+	  2. The levels (These are the unique levels in the categorical
+         variable)
+	  3. The labels (These are the names of the levels)
+  The arguments in the function are separated by commas and the line
+  breaks do not matter. You can add line breaks anywhere you wish to
+  make your script more readable without really long lines.
