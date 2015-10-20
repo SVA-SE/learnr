@@ -1,6 +1,6 @@
 all:
-	pandoc --self-contained -o lesson1_1.html lesson1_1.md 
-	pandoc --self-contained -o lesson1_2.html lesson1_2.md 
-	pandoc --self-contained -o lesson1_3.html lesson1_3.md 
+	Rscript -e "library(rmarkdown); rmarkdown::render('lesson1_1.Rmd')"
+	Rscript -e "library(rmarkdown); rmarkdown::render('lesson1_2.Rmd')"
+	Rscript -e "library(rmarkdown); rmarkdown::render('lesson1_3.Rmd')"
 clean:
 	rm -rf *.html

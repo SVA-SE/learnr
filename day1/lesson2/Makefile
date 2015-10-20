@@ -1,4 +1,5 @@
 all:
-	pandoc --self-contained -o lesson2_1.html lesson2_1.md
+	Rscript -e "library(rmarkdown); rmarkdown::render('lesson2_1.Rmd')"
+
 clean:
 	rm -rf *.html

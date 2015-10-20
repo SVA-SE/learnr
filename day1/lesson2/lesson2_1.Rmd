@@ -64,12 +64,18 @@ my_data <- read_excel(path = "prewmort.xlsx", sheet = 1)
 ## Have a look at the structure of the data with the 'str' function
 str(my_data)
 
-## View the data with the 'View' function. In R-studio you can also
-## click the name of the dataset in the environment tab in the top-right
-## panel of the editor
+
+```
+
+
+View the data with the 'View' function. In R-studio you can also click
+the name of the dataset in the environment tab in the top-right panel
+of the editor
+
+
+```{r, eval = FALSE}
 
 View(my_data)
-
 ```
 
 ## Reading in data from STATA
