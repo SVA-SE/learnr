@@ -93,77 +93,77 @@ Veterinary Institute [SVA](http://www.sva.se/).
 
 09:00 - 10:30 (1.5h)
 
-* Introduction to R and the RStudio editor
-    * Make sure everyone has the correct software
-    * How to enter commands in R
-    * Comparison of an R-script and a do-file
-* Open an existing dataset in R
-    * Data from Excel, Stata, and text
-* Data structure in R
-    * What is a dataframe?
-    * What types of data can you store?
-* Introduction to exploring and managing your data in R
-    * Summarize
-	* Tabulate
-	* Subsetting
+* 1 Introduction to R and the RStudio editor
+    * 1.1 Make sure everyone has the correct software
+    * 1.2 How to enter commands in R
+    * 1.3 Comparison of an R-script and a do-file
+* 2 Open an existing dataset in R
+    * 2.1 Data from Excel, Stata, and text
+* 3 Data structure in R
+    * 3.1 What is a dataframe?
+    * 3.2 What types of data can you store?
+* 4 Introduction to exploring and managing your data in R
+    * 4.1 Summarize
+	* 4.2 Tabulate
+	* 4.3 Subsetting
 
 10:30 - 11:00 Coffee and snack provided
 
 11:00 - 12:00 (1.0h)
 
-* Continue with exploring and managing your data in R
-	* Generating new variables
-	* Appending
-	* Merging
+* 5 Continue with exploring and managing your data in R
+	* 5.1 Generating new variables
+	* 5.2 Appending
+	* 5.3 Merging
 
 12:00 - 13:00 Lunch provided
 
 13:00 - 15:00 (2.0h)
 
-* Analysis of data in R:
-	* Work through examples from
+* 6 Analysis of data in R:
+	* 6.1 Work through examples from
       [Veterinary Epidemiologic Research](http://www.upei.ca/ver/) in
       R.
-    * How do these outputs compare to outputs from Stata?
+    * 6.2 How do these outputs compare to outputs from Stata?
 
 15:00 - 15:30 Coffee and snacks provided
 
 15:30 - 17:00 (1.5h)
 
-* Introduction to visualization in R
-    * How to plot your data
-* Demonstration of interactive and dynamic plotting and mapping in R
+* 7 Introduction to visualization in R
+    * 7.1 How to plot your data
+* 8 Demonstration of interactive and dynamic plotting and mapping in R
 
 ### Day 2
 
 09:00 - 10:30 (1.5h)
 
-* How to find and read R documentation
-* R Extensions
-    * How to find and use R extensions (package)
-    * Demonstration of packages for veterinary epidemiology
-* Install a package
+* 9 How to find and read R documentation
+* 10 R Extensions
+    * 10.1 How to find and use R extensions (package)
+    * 10.2 Demonstration of packages for veterinary epidemiology
+* 11 Install a package
 
 10:30 - 11:00 Coffee and snacks provided
 
 11:00 - 12:00 (1.0h)
 
-* Plotting continued:
-	* Plotting using the popular
+* 12 Plotting continued:
+	* 12.1 Plotting using the popular
       [ggplot2](http://docs.ggplot2.org/current/index.html) package
 
 12:00 - 13:00 Lunch provided
 
 13:00 - 15:00 (2.0h)
 
-* Communicate you findings with R
-    * Create a report with your analysis results, figures and your
+* 13 Communicate you findings with R
+    * 13.1 Create a report with your analysis results, figures and your
       interpretation in publication quality layout.
 
 15:00 - 15:30 Coffee and snacks provided
 
 15:30 - 17:00 (1.5h)
 
-* Where to find resources for you next step in learning to use R
-* Wrap up and question and answer period
-* Demonstration of importing and analyzing sequence data
+* 14 Where to find resources for you next step in learning to use R
+* 15 Wrap up and question and answer period
+* 16 Demonstration of importing and analyzing sequence data
