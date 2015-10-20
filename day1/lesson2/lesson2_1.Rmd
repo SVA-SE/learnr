@@ -1,0 +1,88 @@
+# Getting your data into R
+
+There are any number of format that you may use to store your data
+that you want to summarize, plot or analyze using R. In this exercise
+we will learn how to load data from STATA, excel, and from 2 different
+text formats: comma separated and tab separated.
+
+## Reading in data from comma separated format
+
+When you read your data in from comma separated format then you have a
+you just specify the new dataset name (my_data) and the file that you
+want to read from. The default in the read.csv function is that the
+first row in your .csv file contains the names of the variables.
+
+```{r}
+
+my_data <- read.csv("prewmort.csv")
+
+## Have a look at the structure of the data with the 'str' function
+str(my_data)
+
+```
+
+## Reading in data from tab delimited
+
+When you read data from tad delimed form, you use a similar format to
+.csv but now you must specify that the first row of your text file
+contains the names of the variables by adding the argument 'header = TRUE'
+
+```{r}
+
+my_data <- read.table("prewmort.txt", header = TRUE)
+
+## Have a look at the structure of the data with the 'str' function
+str(my_data)
+
+```
+
+
+## Reading in data from Excel
+
+Experience will teach you that storing your data in Excel format is
+generally a bad idea since the Excel format changes over time and lots
+of weird and wonderful formulae, colours and special characters can be
+hidden from you. You may find that an apparently unaltered Excel file
+does not contain the same formatting or data as a previous
+version. You can avoid this problem by using a standardized text
+format such as comma separated which can also be opened and edited in
+Excel.
+
+When you store your data in Excel, you have a spreadsheet or multiple
+spreadsheets that are called worksheets in a workbook. When you import
+data you need to specify the name of the file and index number of the
+worksheet. In the example below we will load the first worksheet in
+the 'prewmort.xlsx' workbook.
+
+```{r}
+
+## Use the readxl library
+library(readxl)
+
+my_data <- read_excel(path = "prewmort.xlsx", sheet = 1)
+
+## Have a look at the structure of the data with the 'str' function
+str(my_data)
+
+## View the data with the 'View' function. In R-studio you can also
+## click the name of the dataset in the environment tab in the top-right
+## panel of the editor
+
+View(my_data)
+
+```
+
+## Reading in data from STATA
+
+Data that has been saved in STATA can be read into R using the
+following function:
+
+```{r}
+
+## Use the foreign library
+library(foreign)
+
+my_data <- read.dta("prewmort.dta")
+
+```
+

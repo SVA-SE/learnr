@@ -1,7 +1,7 @@
-** Here is a simple example of a .do file that is used in Stata. 
+** Here is a simple example of a .do file that is used in Stata.
 ** Note that comments in the file are on line  that begin with an asterisk (*)
 
-** In case a dataset is currently in the memory then we start by 
+** In case a dataset is currently in the memory then we start by
 ** clearing out the environment. Stata can only have one dataset in the
 ** memory at a time
 
@@ -11,9 +11,9 @@ clear
 
 cd c:\projects\learnr\day1\lesson1
 
-** Read in the data. Here 
+** Read in the data. Here
 
-insheet using "prewmort.csv", delimiter(";")
+insheet using "prewmort.csv", delimiter(",")
 
 ** If you want to look at your data:
 
@@ -42,4 +42,4 @@ graph box pm, over(sow_parity)
 
 ** Then you can save the modified dataset in a stata format
 
-save prewmort.dta, replace 
+save prewmort.dta, replace

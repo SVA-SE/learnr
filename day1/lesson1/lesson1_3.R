@@ -11,7 +11,7 @@ setwd("c:/projects/learnr/day1/lesson1")
 
 ## Read in the data. Here (Note that we give the dataset a name)
 
-my_data <- read.csv2("prewmort.csv")
+my_data <- read.csv("prewmort.csv")
 
 ## If you want to look at your data: (Note that we supply the name of
 ## the dataset that want to view)
