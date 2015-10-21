@@ -7,7 +7,7 @@ This lesson will teach you
 
 ----
 
-## Data Frames
+## What is a data.frame
 
 The primary data structure of **R** is the
 [data.frame](https://stat.ethz.ch/R-manual/R-patched/library/base/html/data.frame.html). A
@@ -18,43 +18,5 @@ feature of a table is that each column can have a different data type,
 
 ![Worksheet](worksheet.png)
 
-```{r, eval=TRUE, echo=FALSE}
-# Demonstrate how to read data from tools menu
-1+1
-```
-
-```{r}
-# Read data from file 'herd_20.txt'
-herd_20 <- read.table("herd_20.txt", header = TRUE)
-
-plot(herd_20)
-
-# View a summary of the dataset
-summary(herd_20)
-
-# View the first six rows of the dataset
-head(herd_20)
-
-# View the structure of the dataset
-str(herd_20)
-```
-
-Lets add a column with the name of the herd manager
-
-```{r}
-herd_20$manager <- "Alice"
-
-# View the structure of the dataset again
-str(herd_20)
-
-# View the first six rows of the dataset
-head(herd_20)
-```
-
-```{r}
-files <- c("herd_20.txt", "herd_21.txt", "herd_22.txt", "herd_23.txt",
-           "herd_24.txt", "herd_25.txt", "herd_26.txt", "herd_27.txt",
-           "herd_28.txt", "herd_30.txt", "herd_31.txt", "herd_33.txt",
-           "herd_34.txt", "herd_36.txt", "herd_37.txt", "herd_38.txt")
-```
+**Demonstrate how to read data from tools menu**
 

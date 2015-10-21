@@ -1,0 +1,8 @@
+# Data structures in R
+
+----
+
+## What types of data can you store in a data.frame
+
+yada yada yada
+
