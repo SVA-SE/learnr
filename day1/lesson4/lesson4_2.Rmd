@@ -82,8 +82,8 @@ result$p.value
 ```
 
 What we do above is first assign the result of the cross-tabulation to
-a new object; saving the result in 'my_table' so we can use it for
-something else. Then we submit this saved result , 'my_table', to the
+a new object; saving the result in 'my\_table' so we can use it for
+something else. Then we submit this saved result , 'my\_table', to the
 'chisq.test' function and assign the output of that function to and
 object: 'result'.
 
@@ -91,11 +91,16 @@ When we run the line: 'result', R returns a representation of the
 content of the 'result' object. Here we can see the chi-squared
 statistic and the corresponding _P_-value. We can also look closer at
 the 'result' object and find that it contains the observed values that
-we submitted to the 'chisq.test' function in 'result$observed'; the
-expected values calculated by the function 'result$expected'; the
-chi-squared statistic 'result$statistic' and the _P_-value in
-'result$p.value'
+we submitted to the 'chisq.test' function in 'result\$observed'; the
+expected values calculated by the function 'result\$expected'; the
+chi-squared statistic 'result\$statistic' and the _P_-value in
+'result\$p.value'
+
+## Now you try
 
 This test indicated that we could not reject the null hypothesis that
 herd type is independent of year. This was not a particularly
-interesting test; try on you own to test whether
+interesting test; try on you own to test whether preweaning mortality
+is associated with parity. Have a look at the
+[data description](../../about_datasets.html) if you need to know
+which variables to look at.
