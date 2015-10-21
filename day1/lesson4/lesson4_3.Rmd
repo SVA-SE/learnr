@@ -72,6 +72,7 @@ can ask for an entire row or entire column in the dataframe
 ```{r}
 
 ## the first row
+options(width = 100)
 my_data[1,]
 
 ## the first column
@@ -92,6 +93,7 @@ a <- c(1,2,3)
 a
 
 ## use this vector to index your dataframe
+options(width = 100)
 my_data[a,]
 
 ```
