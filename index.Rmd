@@ -27,9 +27,9 @@
 11:00 - 12:00 (1.0h)
 
 * 5 Continue with exploring and managing your data in R
-	* 5.1 Generating new variables
-	* 5.2 Appending
-	* 5.3 Merging
+	* 5.1 [Generating new variables](day1/lesson5/lesson5_1.html)
+	* 5.2 [Appending](day1/lesson5/lesson5_1.html)
+	* 5.3 [Merging](day1/lesson5/lesson5_1.html)
 
 12:00 - 13:00 Lunch provided
 
