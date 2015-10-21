@@ -1,0 +1,53 @@
+[![Previous](../../img/previous.png)](../lesson15/lesson15_1.html)
+[![Index](../../img/home.png)](../../index.html)
+[![Folder](../../img/folder.png)](./)
+
+---
+
+Suppose that we are still looking at the preweaning mortality dataset
+but not we have the sequences of the ORF5 gene of PRRSV
+
+
+```{r}
+
+## The Analyses of Phylogenetics and Evolution library is required
+library(ape)
+
+## Read in aligned sequences in fasta format
+a <- read.FASTA("aligned.fas")
+
+## Calculate a distance matrix for the sequences
+dis <- dist(a)
+
+## Calculate an average linkage clustering of the distance matrix
+hc <- hclust(dis, "average")
+
+## Convert the cluster to a tree object
+hc <- as.phylo(hc)
+
+## Plot the tree and unrooted tree
+plot(hc, type = "unroot")
+
+```
+
+We can use the covariate information to label the tree
+
+```{r}
+
+## Read in the data about the farms
+my_data <- read.csv("prewmort.csv")
+
+herd_type <- unlist(
+    lapply(unique(my_data$herd), function(x){
+
+        a <- unique(my_data$herdtype[my_data$herd == x])
+        stopifnot(length(a) == 1)
+        return(a)
+    })
+    )
+
+## Add this to a new collapsed data frame of just the herd types that
+## can be used to colour the nodes of the tree
+herd_level <- data.frame("herd" = unique(my_data$herd), "herd_type" = herd_type)
+
+```
