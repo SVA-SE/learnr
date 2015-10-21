@@ -1,0 +1,23 @@
+# Append data to a data.frame
+
+To combine the 16 data files in this lesson, we will introduce the
+[for-loop](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Loops-and-conditional-execution). Using
+the `for`, we can read one file at a time and append to the result. If
+you browse the folder for this lesson, you should find the following
+16 files.
+
+```{r}
+files <- c("herd_20.txt", "herd_21.txt", "herd_22.txt", "herd_23.txt",
+           "herd_24.txt", "herd_25.txt", "herd_26.txt", "herd_27.txt",
+           "herd_28.txt", "herd_30.txt", "herd_31.txt", "herd_33.txt",
+           "herd_34.txt", "herd_36.txt", "herd_37.txt", "herd_38.txt")
+```
+
+Lets start to explore the `for` loop before reading data.
+
+```{r}
+for(i in 1:10) {
+    cat("Hello R! ")
+}
+```
+
