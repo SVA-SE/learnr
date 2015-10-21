@@ -1,2 +1,8 @@
+[![Previous](../../img/previous.png)](lesson5_2.html)
+[![Index](../../img/home.png)](../../index.html)
+[![Next](../../img/next.png)](lesson6_1.html)
+
+---
+
 # Merging
 

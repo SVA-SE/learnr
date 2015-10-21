@@ -1,5 +1,5 @@
-[Back to index](../../index.html)---
-[Next](lesson1_2.html)
+[![Index](../../img/home.png)](../../index.html)
+[![Next](../../img/next.png)](lesson1_2.html)
 
 ---
 

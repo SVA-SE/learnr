@@ -1,6 +1,6 @@
-[Back](lesson3_2.html)---
-[to index](../../index.html)---
-[Next](../lesson2/lesson4_2.html)
+[![Previous](../../img/previous.png)](lesson3_2.html)
+[![Index](../../img/home.png)](../../index.html)
+[![Next](../../img/next.png)](lesson4_2.html)
 
 ---
 

@@ -1,3 +1,9 @@
+[![Previous](../../img/previous.png)](lesson2_1.html)
+[![Index](../../img/home.png)](../../index.html)
+[![Next](../../img/next.png)](lesson3_2.html)
+
+---
+
 # Data structures in R
 
 This lesson will teach you
