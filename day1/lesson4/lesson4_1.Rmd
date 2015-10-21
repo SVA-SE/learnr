@@ -1,3 +1,9 @@
+[Back](lesson3_2.html)---
+[to index](../../index.html)---
+[Next](../lesson2/lesson4_2.html)
+
+---
+
 # Summarizing data in R
 
 Summarizing data means exploring your data in...
@@ -52,7 +58,7 @@ data.
 
 my_data$herdtype <- factor(my_data$herdtype,
                            levels = c(0,1),
-                           labels = c("type1", "type2"))
+                           labels = c("production", "breeding"))
 
 summary(my_data$herdtype)
 
@@ -65,7 +71,19 @@ summary(my_data$herdtype)
 	  1. The values (The existing content of the 'herdtype' variable)
 	  2. The levels (These are the unique levels in the categorical
          variable)
-	  3. The labels (These are the names of the levels)
+	  3. The labels (These are the names of the levels. See the
+  [description of the dataset](../../about_datasets.html))
   The arguments in the function are separated by commas and the line
   breaks do not matter. You can add line breaks anywhere you wish to
   make your script more readable without really long lines.
+
+
+## Now you try
+
+Summarize the sow parity.
+
+1. In the description of the data we do not know if gilts are coded as
+   parity 0 or parity 1. Can we determine that from the data?
+
+2. Plot a histogram of the frequency of sow parities in the data. The
+   function for histogram is 'hist'

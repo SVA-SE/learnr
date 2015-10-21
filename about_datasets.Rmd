@@ -1,0 +1,46 @@
+# prew_mort
+
+This dataset was obtained from [the webpage of the textbook: 'Veterinary
+Epidemiologic Research'](http://www.upei.ca/ver/datasets-programs). The
+description of the dataset is taken from page 828 of the same
+textbook.
+
+|Contributor      |Study type     |# records|Unit of record|
+|:---------------:|:-------------:|:-------:|:------------:|
+|Jette Christensen|cross-sectional|  6552   |    litter    |
+
+#Reference
+
+Christensen J, Svensmark B. Evaluation of producer-recorded causes of
+preweaning mortality in Danish sow herds Prev Vet Med. 1997; 32:
+155-64.
+
+# Brief description
+
+These data are a subset of 16 herds from a dataset collected by Jette
+Christensen in Denmark to study factors affecting preweaning mortality
+in pigs. These data have three levels in the hierarchy
+(litters(n=6552) within sows (n=3162) within farms(n=16)):
+
+The key outcome of interest is preweaning mortality with a litter
+classified as having preweaning mortality or not if one or more
+piglets died before weaning.
+
+# Table of variables
+
+| Variable   | Description                                               | Codes/units                                         |
+|------------|-----------------------------------------------------------|-----------------------------------------------------|
+| herd       | unique herd id                                            |                                                     |
+| sowid      | unique sow id                                             |                                                     |
+| litter     | unique litter id                                          |                                                     |
+| lmort      | prewmort in litter                                        | 0/1                                                 |
+| herdtype   | herd type                                                 | 0 = production; 1 = breeding herd                   |
+| year       |                                                           |                                                     |
+| month      | month                                                     | jan = 1; dec = 12                                   |
+| quarter    | quarter of the year                                       | 1 = jan-mar; 2 = apr-jun; 3 = jul-sept; 4 = oct-dec |
+| sow_parity | parity of the sow                                         |                                                     |
+| sow_tx     | sow required treatment (2d before to 7 d after farrowing) | 0/1                                                 |
+| dead       | number of dead piglets in litter                          |                                                     |
+| lsize      | litter size                                               |                                                     |
+| n          | number at risk in the litter                              |                                                     |
+| stillb     | number stillborn                                          |                                                     |
