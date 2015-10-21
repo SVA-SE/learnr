@@ -14,11 +14,17 @@ just some of your larger dataset. We did some subsetting already in
 the previous examples by calling a variable within a dataframe using
 the 'Dollar sign' **\$**. Now we will discuss that and more.
 
-First read in the data as we have been doing at the beginning of each lesson
+First read in the data as we have been doing at the beginning of each
+lesson. We'll use a smaller dataset this time that just contains one
+herd.
+
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 100)
+```
 
 ```{r}
 
-my_data <- read.csv("prewmort.csv")
+my_data <- read.table("herd_20_snippet.txt", header = TRUE)
 
 ```
 
@@ -27,12 +33,12 @@ see it
 
 ```{r}
 
-my_data$herdtype
+my_data$lsize
 
 ```
 
-You will see a sequence of zeros and ones in the console. What we did
-was just ask to see the contents of the 'herdtype' variable in the
+You will see a sequence of numbers in the console. What we did
+was ask to see the contents of the 'lsize' variable in the
 'my\_data' data frame. We returned one of the columns in the data
 frame. We did this earlier as well when we tabulated and summarized
 the contents of variables in the dataset, but we never really looked
@@ -55,13 +61,13 @@ my_data[1,1]
 ```
 
 We asked for the first row and first column in the data frame. Check
-to make sure that makes sense by using the 'View' function to look at
+to make sure that makes sense by using the `View` function to look at
 your data and check the value of the first row, first column.
 
 If you leave one of the two indexes blank R interprets this as wanted
 all of the values. Therefore, if you were to do the following
 
-```{r, eval = FALSE}
+```{r, width = 100}
 
 my_data[,]
 
@@ -73,7 +79,6 @@ can ask for an entire row or entire column in the dataframe
 ```{r}
 
 ## the first row
-options(width = 100)
 my_data[1,]
 
 ## the first column
@@ -94,7 +99,6 @@ a <- c(1,2,3)
 a
 
 ## use this vector to index your dataframe
-options(width = 100)
 my_data[a,]
 
 ```
@@ -105,23 +109,83 @@ You should see the first 3 rows of your data frame.
 In the above example we give the numeric index of the rows in the data
 frame. We can also subset a dataset with a vector of TRUES and FALSES
 that has the same length as the number of rows or columns in the
-dataset.
+dataset. The data frame that we are working with has 9 rows.
 
+```{r}
+
+
+## generate a vector of 3 TRUES and 6 FALSES (Because we have 9 rows)
+a <- c(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)
+
+## This is what your vector looks like
+a
+
+## use this vector to index your dataframe
+my_data[a,]
+
+
+
+```
+
+Note that we get the same result indexing this way as we did when we
+indexed numerically. The vector of TRUE and FALSE was used to choose
+the rows that we want with TRUE and eliminate the rows we don't want
+with FALSE.
 
 All of this may seem abstract, but it is a very powerful foundation
-for selecting subsections of you data for further analysis. Let's say
-we want to examine only the data from breeding farms. We have the
-variable 'herdtype' so we can use that to determine the indexes of the
-rows of the data frame that we want.
+for selecting subsections of your data for further analysis. Let's say
+we want to examine only the litters that have preweaning mortality. We
+have the variable 'lmort' so we can use that to determine the
+indexes of the rows of the data frame that we want.
+
+```{r}
+
+## Create the indexing vector
+
+a <- my_data$lmort == 1
+
+## Examine the vector
+
+a
+
+## Now use it to index the rows of the dataframe
+
+my_data[a,]
+
+```
+
+In the above we used a logical operator `==` to test if the values in
+the 'lmort' variable are exactly equal to 1. You could perform other
+tests using a variety of
+[logical operators](http://www.statmethods.net/management/operators.html).
 
 
+Let's read in the larger dataset that we worked with before for
+all the farms and try to use the subsetting principles to do something
+practical:
 
+```{r}
+
+my_data <- read.csv("prewmort.csv")
+
+```
+
+Now we'll create a cross-tabulation of sow_parity and preweaning
+mortality for just 1990.
+
+```{r}
+
+## Generate a new dataset with just row where the year is 1990
+
+a <- my_data$year == 1990
+
+my_data_1990 <- my_data[a,]
+
+table(my_data_1990$lmort, my_data_1990$sow_parity)
+
+```
 
 ## Now you try
 
-This test indicated that we could not reject the null hypothesis that
-herd type is independent of year. This was not a particularly
-interesting test; try on you own to test whether preweaning mortality
-is associated with parity. Have a look at the
-[data description](../../about_datasets.html) if you need to know
-which variables to look at.
+Determine which of herds 37 and 34 have the highest mean sow
+parity. You'll need to subset your data and use the `summary` function.
