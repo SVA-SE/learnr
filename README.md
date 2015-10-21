@@ -135,7 +135,6 @@ Veterinary Institute [SVA](http://www.sva.se/).
 * 7 Introduction to visualization in R
     * 7.1 How to plot your data
 * 8 Demonstration of interactive and dynamic plotting and mapping in R
-* 9 Test
 
 ### Day 2
 
