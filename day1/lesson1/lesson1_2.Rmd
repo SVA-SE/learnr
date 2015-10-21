@@ -1,3 +1,9 @@
+[Back](lesson1_1.html)---
+[to index](../../index.html)---
+[Next](lesson1_3.html)
+
+---
+
 # How to enter commands in R
 
 You can think of R like a statistical software package, a basic
@@ -65,7 +71,7 @@ Console frame.
 We can type the same as before into this script frame and evaluate the
 line that the cursor is currently on with the key sequence
 Ctrl-Enter. Then you notice the console frame evaluates what you
-wrote. 
+wrote.
 
 ![Screenshot 22](image22.png)
 

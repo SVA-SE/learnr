@@ -26,7 +26,7 @@ visualization, which led to a switch to R three years ago to take
 advantage of its powerful plotting functionality. Today he uses R for
 all his data analysis, visualization and reporting.
 
-## Learning obejctives
+## Learning objectives
 
 This course will teach you the basics of data management and analysis
 in R. We will teach the following concepts:
@@ -64,9 +64,9 @@ Participants need to bring their own laptop with the latest version of
 installed. The participants also need to install the
 [RStudio](http://www.rstudio.com/) editor (http://www.rstudio.com/).
 
-## Target audicience
+## Target audience
 
-You are a person with an interest in data managment and data analysis.
+You are a person with an interest in data management and data analysis.
 
 We expect that you have either little or no experience with R.
 
@@ -88,6 +88,8 @@ Veterinary Institute [SVA](http://www.sva.se/).
 2
 
 ## Schedule and content
+
+[Browse the course material](index.html)
 
 ### Day 1
 

@@ -1,3 +1,7 @@
+[Back to index](../../index.html)---
+[Next](lesson1_2.html)
+
+---
 
 # Introduction to R and the RStudio editor
     1.  Make sure everyone has the correct software
