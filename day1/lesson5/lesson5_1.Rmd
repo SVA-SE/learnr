@@ -1,4 +1,4 @@
-[![Previous](../../img/previous.png)](lesson4_3.html)
+[![Previous](../../img/previous.png)](../lesson4/lesson4_3.html)
 [![Index](../../img/home.png)](../../index.html)
 [![Next](../../img/next.png)](lesson5_2.html)
 
