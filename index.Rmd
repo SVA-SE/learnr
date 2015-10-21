@@ -47,7 +47,7 @@
 
 * 7 Introduction to visualization in R
     * 7.1 How to plot your data
-* 8 Demonstration of interactive and dynamic plotting and mapping in R
+* 8 [Demonstration of interactive and dynamic plotting and mapping in R](day1/lesson8/lesson8_1.html)
 
 ### Day 2
 
