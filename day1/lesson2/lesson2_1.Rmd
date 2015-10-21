@@ -23,7 +23,7 @@ str(my_data)
 
 ## Reading in data from tab delimited
 
-When you read data from tad delimed form, you use a similar format to
+When you read data from tab delimed form, you use a similar format to
 .csv but now you must specify that the first row of your text file
 contains the names of the variables by adding the argument 'header = TRUE'
 
