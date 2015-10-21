@@ -1,6 +1,6 @@
-all:
-	Rscript -e "library(rmarkdown); rmarkdown::render('lesson1_1.Rmd')"
-	Rscript -e "library(rmarkdown); rmarkdown::render('lesson1_2.Rmd')"
-	Rscript -e "library(rmarkdown); rmarkdown::render('lesson1_3.Rmd')"
+Rmd_files = $(wildcard *.Rmd)
+render:
+	$(foreach var,$(Rmd_files),Rscript -e "library(rmarkdown); rmarkdown::render('$(var)')";)
+
 clean:
 	rm -rf *.html
