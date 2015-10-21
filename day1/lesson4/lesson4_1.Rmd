@@ -1,3 +1,9 @@
+[Back](lesson3_2.html)---
+[to index](../../index.html)---
+[Next](../lesson2/lesson4_2.html)
+
+---
+
 # Summarizing data in R
 
 Summarizing data means exploring your data in...

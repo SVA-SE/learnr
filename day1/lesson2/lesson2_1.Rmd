@@ -1,3 +1,9 @@
+[Back](lesson1_3.html)---
+[to index](../../index.html)---
+[Next](../lesson3/lesson3_1.html)
+
+---
+
 # Getting your data into R
 
 There are any number of format that you may use to store your data

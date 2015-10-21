@@ -1,0 +1,101 @@
+[Back](lesson4_1.html)---
+[to index](../../index.html)---
+[Next](../lesson2/lesson4_3.html)
+
+---
+
+# Tabulating data in R
+
+Tabulating data is a useful way of looking at the frequencies of
+categorical data and perhaps a cross-tabulation for investigating the
+frequency of observations across multiple variables.
+
+* Read in data from comma separated format to a dataframe named
+  'my_data'.
+
+```{r}
+
+my_data <- read.csv("prewmort.csv")
+
+```
+
+* We will tabulate the variable 'herdtype' in the 'my_data' dataframe
+
+```{r}
+
+table(my_data$herdtype)
+
+```
+
+* In the previous lesson we used summarize to investigate the same
+variable and in order to get an appropriate summary we needed to tell
+R that the variable was a 'factor' (categorical). When the 'table'
+function is used, R returns a table regardless of the data type
+because that's what you asked for
+
+* We can also ask R for a cross-tabulation by supplying a second
+argument to the 'table' function.
+
+```{r}
+
+table(my_data$herdtype, my_data$year)
+
+```
+
+* This gives a table of the frequencies of each of the combinations of
+  the variables.
+* The table you just produced is 2x2; you may produce any size table:
+
+A 1x14 table:
+
+```{r}
+
+table(my_data$sow_parity)
+
+```
+
+Or 14x20 table
+
+```{r}
+
+options(width = 100)
+table(my_data$sow_parity, my_data$lsize)
+
+```
+
+Let's go back to the 2x2 table and quickly test do a chi-square test
+on the table:
+
+```{r}
+
+my_table <- table(my_data$herdtype, my_data$year)
+
+result <- chisq.test(my_table)
+
+result
+
+result$observed
+result$expected
+result$statistic
+result$p.value
+
+```
+
+What we do above is first assign the result of the cross-tabulation to
+a new object; saving the result in 'my_table' so we can use it for
+something else. Then we submit this saved result , 'my_table', to the
+'chisq.test' function and assign the output of that function to and
+object: 'result'.
+
+When we run the line: 'result', R returns a representation of the
+content of the 'result' object. Here we can see the chi-squared
+statistic and the corresponding _P_-value. We can also look closer at
+the 'result' object and find that it contains the observed values that
+we submitted to the 'chisq.test' function in 'result$observed'; the
+expected values calculated by the function 'result$expected'; the
+chi-squared statistic 'result$statistic' and the _P_-value in
+'result$p.value'
+
+This test indicated that we could not reject the null hypothesis that
+herd type is independent of year. This was not a particularly
+interesting test; try on you own to test whether
