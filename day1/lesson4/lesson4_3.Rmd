@@ -1,0 +1,124 @@
+[Back](lesson4_2.html)---
+[to index](../../index.html)---
+[Next](../lesson2/lesson5_1.html)
+
+---
+
+# Subsetting data in R
+
+Subsetting data in R tends to be a tricky concept to grasp for
+newcomers to R. However, understanding at least how to subset a data
+frame is fundamental to understanding how to modify your data or select
+just some of your larger dataset. We did some subsetting already in
+the previous examples by calling a variable within a dataframe using
+the 'Dollar sign' **\$**. Now we will discuss that and more.
+
+First read in the data as we have been doing at the beginning of each lesson
+
+```{r}
+
+my_data <- read.csv("prewmort.csv")
+
+```
+
+Now let's select just one of the variables in the dataset and ask to
+see it
+
+```{r}
+
+my_data$herdtype
+
+```
+
+You will see a sequence of zeros and ones in the console. What we did
+was just ask to see the contents of the 'herdtype' variable in the
+'my\_data' data frame. We returned one of the columns in the data
+frame. We did this earlier as well when we tabulated and summarized
+the contents of variables in the dataset, but we never really looked
+as the sequence of numbers that we were passing to the functions to do
+tabulation and summarizing. You could do the same thing for any of the
+variables in the data frame.
+
+Above we refer to the name of the variable in the data frame. We can
+also refer to rows and columns in the data frame by their numerical
+order called their 'index'. When you do this you no longer use the
+**\$** operator but two square brackets, **[]**, after the name of the
+data frame. Inside these brackets you put the indexes of the rows and
+columns that you want back from the data frame separated by a comma.
+
+```{r}
+
+## mydata[row, column]
+my_data[1,1]
+
+```
+
+We asked for the first row and first column in the data frame. Check
+to make sure that makes sense by using the 'View' function to look at
+your data and check the value of the first row, first column.
+
+If you leave one of the two indexes blank R interprets this as wanted
+all of the values. Therefore, if you were to do the following
+
+```{r, eval = FALSE}
+
+my_data[,]
+
+```
+
+R returns to you the entire data frame. If we use this principle, we
+can ask for an entire row or entire column in the dataframe
+
+```{r}
+
+## the first row
+my_data[1,]
+
+## the first column
+my_data[,1]
+
+```
+
+You can also supply a series of numbers, which in R is called a
+'vector', to the index in order to retrieve several columns or rows at
+a time. For example the first 3 rows:
+
+```{r}
+
+## generate a vector of 1 to 3
+a <- c(1,2,3)
+
+## This is what your vector looks like
+a
+
+## use this vector to index your dataframe
+my_data[a,]
+
+```
+
+You should see the first 3 rows of your data frame.
+
+
+In the above example we give the numeric index of the rows in the data
+frame. We can also subset a dataset with a vector of TRUES and FALSES
+that has the same length as the number of rows or columns in the
+dataset.
+
+
+All of this may seem abstract, but it is a very powerful foundation
+for selecting subsections of you data for further analysis. Let's say
+we want to examine only the data from breeding farms. We have the
+variable 'herdtype' so we can use that to determine the indexes of the
+rows of the data frame that we want.
+
+
+
+
+## Now you try
+
+This test indicated that we could not reject the null hypothesis that
+herd type is independent of year. This was not a particularly
+interesting test; try on you own to test whether preweaning mortality
+is associated with parity. Have a look at the
+[data description](../../about_datasets.html) if you need to know
+which variables to look at.
