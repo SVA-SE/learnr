@@ -7,16 +7,96 @@
 
 # Comparison of and R-script to a do-file
 
-
-There are two files "lesson1\_3.R" and "lesson1\_3.do" that complete a
+There are two files `lesson1_3.R` and `lesson1_3.do` that complete a
 few simple tasks in STATA and in R. If you have access to STATA and it
 is a tool that you often use in your work, then perhaps it is useful
 to study the two files and note the differences and similarities
 between them. If you do not use STATA then you can focus on
-"lesson1\_3.R" and note that data is read into R from a semicolon
+`lesson1_3.R` and note that data is read into R from a semicolon
 separated text file (.csv) and that this dataset is given a name
 (my_data). There could be any number of datasets in memory at one
 time, and they each have a name that you assign. Therefore when you
 want to do something to a variable in a dataset you need to refer to
 the dataset name and the name of the
 variable(dataset\_name$variable\_name).
+
+## The R script
+
+```{r eval=FALSE}
+## Here is a simple example of an .R file that is used in R.
+## Note that comments in the file are on line  that begin with a hash (#)
+
+## It's OK if another dataset is currently in memory because R can
+## hold any number of datasets at a time; they each have a name that
+## you give them
+
+## Set the working directory (Note the direction of the slash)
+setwd("c:/projects/learnr/day1/lesson1")
+
+## Read in the data. Here (Note that we give the dataset a name)
+my_data <- read.csv("prewmort.csv")
+
+## If you want to look at your data: (Note that we supply the name of
+## the dataset that want to view)
+View(my_data)
+
+## tabulate the year variable. Note that you just need to specify
+## function that you are using (table) and the name of the dataset (my_data) and
+## the variable (year) after it.
+table(my_data$year)
+
+## Arguments to a function are comma separated, Some may be optional.
+summary(my_data$lsize, digits = 4)
+
+## If you want to add a new variable to the dataset
+my_data$percent_mort <- 100*(my_data$dead/my_data$lsize)
+
+## Maybe rename a variable:
+names(my_data)[names(my_data) == "percent_mort"] <- "pm"
+
+## If you want to plot something
+boxplot(my_data$pm ~ my_data$sow_parity)
+
+## Then you can save the modified dataset in R format
+save(my_data, file = "prewmort.Rda")
+```
+
+## The do file
+
+```{Stata}
+** Here is a simple example of a .do file that is used in Stata.
+** Note that comments in the file are on line  that begin with an asterisk (*)
+
+** In case a dataset is currently in the memory then we start by
+** clearing out the environment. Stata can only have one dataset in the
+** memory at a time
+clear
+
+** Set the working directory (Note the direction of the slash)
+cd c:\projects\learnr\day1\lesson1
+
+** Read in the data. Here
+insheet using "prewmort.csv", delimiter(",")
+
+** If you want to look at your data:
+br
+
+** tabulate the year variable. Note that you just need to specify command
+** that you are using (table) and the name of the variable after it.
+table year
+
+** Optional inputs to a command go after a comma
+summarize lsize, detail
+
+** If you want to add a new variable to the dataset
+generate percent_mort = 100*(dead/lsize)
+
+** Maybe rename a variable:
+rename percent_mort pm
+
+** If you want to plot something
+graph box pm, over(sow_parity)
+
+** Then you can save the modified dataset in a stata format
+save prewmort.dta, replace
+```
