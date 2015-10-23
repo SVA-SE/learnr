@@ -1,6 +1,6 @@
-[![Previous](../../img/previous.png)](../lesson7/lesson7_1.html)
+[![Previous](../../img/previous.png)](lesson8_1.html)
 [![Index](../../img/home.png)](../../index.html)
-[![Next](../../img/next.png)](lesson8_2.html)
+[![Next](../../img/next.png)](lesson8_3.html)
 [![Folder](../../img/folder.png)](./)
 
 ---
@@ -18,4 +18,3 @@ my_data <- read.csv("prewmort.csv")
 
 datatable(my_data, options = list(pageLength = 10))
 ```
-

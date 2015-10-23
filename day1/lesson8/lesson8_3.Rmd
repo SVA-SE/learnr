@@ -1,11 +1,13 @@
-[![Previous](../../img/previous.png)](../lesson7/lesson7_1.html)
+[![Previous](../../img/previous.png)](lesson8_2.html)
 [![Index](../../img/home.png)](../../index.html)
-[![Next](../../img/next.png)](lesson8_2.html)
+[![Next](../../img/next.png)](../../day2/lesson9/lesson9_1.html)
 [![Folder](../../img/folder.png)](./)
 
 ---
 
-# DataTables
+# Demonstration of interactive and dynamic plotting and mapping in R
+
+## DataTables
 
 [DataTables](http://rstudio.github.io/DT/) displays R matrices or data
 frames as interactive HTML tables that support filtering, pagination,
@@ -18,4 +20,3 @@ my_data <- read.csv("prewmort.csv")
 
 datatable(my_data, options = list(pageLength = 10))
 ```
-
