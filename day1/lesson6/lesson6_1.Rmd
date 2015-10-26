@@ -7,28 +7,15 @@
 
 # Work through examples from [Veterinary Epidemiologic Research](http://www.upei.ca/ver/) in R.
 
-```{r}
-# Read data from file 'herd_20.txt'
-herd_20 <- read.table("herd_20.txt", header = TRUE)
+We will work through the examples from the chapter on 'Mixed models for
+discrete data' (Pages 579-606) in the 2nd edition of the
+[Veterinary Epidemiologic Research](http://www.upei.ca/ver/)
+textbook. If you have the first edition of the same book the examples
+are almost the same and are on pages 499-520.
 
-# View a summary of the dataset
-summary(herd_20)
 
-# View the first six rows of the dataset
-head(herd_20)
-
-# View the structure of the dataset
-str(herd_20)
-```
-
-Lets add a column with the name of the herd manager
 
 ```{r}
-herd_20$manager <- "Alice"
+pig_adg<- read.csv("pig_adg.csv")
 
-# View the structure of the dataset again
-str(herd_20)
-
-# View the first six rows of the dataset
-head(herd_20)
 ```
