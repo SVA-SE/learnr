@@ -4,50 +4,186 @@
 
 ---
 
+# Demonstration of importing and analyzing sequence data
+
+
 Suppose that we are still looking at the preweaning mortality dataset
 but not we have the sequences of the ORF5 gene of PRRSV
 
-
+Load the necessary library
 ```{r}
-
 ## The Analyses of Phylogenetics and Evolution library is required
 library(ape)
+```
 
-## Read in aligned sequences in fasta format
+Read in aligned sequences in fasta format. In this case it is aligned
+fasta data. You may be working with a source of unaligned sequences,
+in with case you should aligned them first. If you are workign with
+character data such as MLST, MLVA, or PFGE profiles then this can be
+used directly here as well.
+
+```{r}
 a <- read.FASTA("aligned.fas")
+```
 
-## Calculate a distance matrix for the sequences
+Calculate a distance matrix for the sequences. If this were character
+data then the distance calculation would be done differently depending
+on the type of data.
+
+```{r}
 dis <- dist(a)
+```
 
-## Calculate an average linkage clustering of the distance matrix
+Calculate an average linkage clustering of the distance matrix An
+average linkage tree is analogous to a UPGMA (Unweighted Pair Group
+Method with Arithmetic Mean) tree. You can read about [other linkage
+algorithms](https://en.wikipedia.org/wiki/Hierarchical_clustering). The
+`hclust` function provides: "single", "average", and "complete"
+linkage clustering
+
+```{r}
 hc <- hclust(dis, "average")
+```
 
-## Convert the cluster to a tree object
+Convert the cluster to a tree object
+
+```{r}
 hc <- as.phylo(hc)
+```
 
-## Plot the tree and unrooted tree
+Plot the tree: First an unrooted tree
+
+```{r}
 plot(hc, type = "unroot")
+```
+
+Then a fan shaped tree
+
+```{r}
+plot(hc, type = "fan")
+```
+
+In the examples above the ends of the tree are labeled with the sample
+identifiers. It may be useful to illustrate another variable at the end
+of each node.
+
+First read in the data about the farms
+
+```{r}
+my_data <- read.csv("prewmort.csv")
+```
+Collapse the data to one row per farm. In this case, we'll use the
+`plyr` library and the `ddply` function to do the collapsing.
+
+```{r}
+library(plyr)
+
+farm_level <- ddply(.data = my_data, .var = "herd", .fun = function(x){
+
+    value <- unique(x$herdtype)
+    stopifnot(length(value) == 1)
+    return(data.frame("herdtype" = value))
+
+})
+
+farm_level
 
 ```
 
-We can use the covariate information to label the tree
+Generate a vector of the colours that you would like the symbols at
+each node to have. You have 2 herdtypes and therefore your vector
+should have 2 colours
 
 ```{r}
 
-## Read in the data about the farms
-my_data <- read.csv("prewmort.csv")
-
-herd_type <- unlist(
-    lapply(unique(my_data$herd), function(x){
-
-        a <- unique(my_data$herdtype[my_data$herd == x])
-        stopifnot(length(a) == 1)
-        return(a)
-    })
-    )
-
-## Add this to a new collapsed data frame of just the herd types that
-## can be used to colour the nodes of the tree
-herd_level <- data.frame("herd" = unique(my_data$herd), "herd_type" = herd_type)
+colours <- c("grey", "red")
 
 ```
+
+Generate a two binary dummy variables for herd type
+
+```{r}
+
+farm_level$breeding <- 0
+farm_level$breeding[farm_level$herdtype == 0] <- 1
+
+farm_level$production <- 0
+farm_level$production[farm_level$herdtype == 1] <- 1
+
+```
+
+generate a variable of how big each symbol should be. We'll make them
+all the same size
+
+```{r}
+farm_level$pie_size <- rep(1, nrow(farm_level))
+```
+
+**IMPORTANT**: Order the dataframe according to the nodes in the
+  tree. If you don't do this the node labels will be incorrectly ordered.
+
+```{r}
+farm_level <- farm_level[match(hc$tip.label, farm_level$herd),]
+```
+
+Now the order matches
+```{r}
+hc$tip.label
+farm_level
+```
+
+Generate a matrix of the node types to be used for colouring. The
+matrix must have row names that match the tiplabele of the clustering
+object `hc`. Generate a vector of pie_sizes in the same way.
+
+```{r}
+
+herd_type <- as.matrix(farm_level[,c("breeding", "production")])
+rownames(herd_type) <- farm_level$herd
+
+pie_size <- farm_level$pie_size
+names(pie_size) <- farm_level$herd
+
+```
+
+Now we can use the values in `herd_type` to colour the tree
+
+```{r}
+
+plot(hc, type = "unroot", show.tip.label = FALSE)
+tiplabels(pie = herd_type, piecol = colours, cex = pie_size)
+
+```
+
+
+Now you can experiment with the `pie_size` vector and `herd_type`
+matrix to see what else is possible.
+
+Try to generate a tree with some bigger nodes. Perhaps you have a tree
+that illustrates multiple isolates at an end node and therefore you
+want to make the node size reflect the number of isolates at the node.
+
+```{r}
+
+pie_size[1] <- 3
+plot(hc, type = "unroot", show.tip.label = FALSE)
+tiplabels(pie = herd_type, piecol = colours, cex = pie_size)
+
+```
+
+And maybe that node has 2 production farms and 1 breeding farm
+
+```{r}
+
+herd_type[1,1] <- 1
+herd_type[1,2] <- 2
+
+plot(hc, type = "unroot", show.tip.label = FALSE)
+tiplabels(pie = herd_type, piecol = colours, cex = pie_size)
+
+```
+
+## Now you try:
+
+Change the size of the pie on node '5' to be bigger and have 3 breeding
+farms and 1 production farm.
