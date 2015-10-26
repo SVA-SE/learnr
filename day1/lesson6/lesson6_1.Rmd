@@ -143,6 +143,15 @@ that too), can use a log function in the model call as follows:
 
 result4 <- glmer(pn ~ ar_g1 + log(dtm)  + (1 | farm), data = pig_adg, family = binomial)
 
+```
+or with the dummy variable:
+
+```{r}
+
+pig_adg$log_dtm <- log(pig_adg$dtm)
+
+result4 <- glmer(pn ~ ar_g1 + log_dtm  + (1 | farm), data = pig_adg, family = binomial)
+
 summary(result4)
 
 ```
@@ -155,5 +164,25 @@ the independent variable.... This is just an example to teach you how
 to use R, so try to forget about whether or not the biology or
 modeling approach makes sense.
 
-Let's make a plot of the model predictions.
+We need a dataframe of all the possible values of the covariates in
+order to predict the outcomes for all levels
 
+```{r}
+
+adg_predict <- expand.grid(ar_g1 = levels(pig_adg$ar_g1),
+                           log_dtm   = seq(min(pig_adg$dtm), max(pig_adg$dtm)),
+                           farm  = sort(unique(pig_adg$farm)))
+
+adg_predict$log_dtm <- log(adg_predict$log_dtm)
+
+head(adg_predict)
+
+```
+
+Make the predictions based on the `result4` model.
+
+```{r}
+
+adg_predict$log_odds <- predict(result4, adg_predict)
+
+```
