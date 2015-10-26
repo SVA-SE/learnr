@@ -4,6 +4,9 @@ render:
 	Rscript -e "library(foreign)"
 	Rscript -e "library(ggplot2)"
 	Rscript -e "library(readxl)"
+	Rscript -e "library(lme4)"
+	Rscript -e "library(epitools)"
+
 	pandoc --self-contained -o README.html  README.md
 	Rscript -e "library(rmarkdown); rmarkdown::render('index.Rmd')"
 	Rscript -e "library(rmarkdown); rmarkdown::render('about_datasets.Rmd')"
