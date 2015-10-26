@@ -1,0 +1,34 @@
+[![Previous](../../img/previous.png)](../lesson5/lesson5_3.html)
+[![Index](../../img/home.png)](../../index.html)
+[![Next](../../img/next.png)](lesson6_2.html)
+[![Folder](../../img/folder.png)](./)
+
+---
+
+# Work through examples from [Veterinary Epidemiologic Research](http://www.upei.ca/ver/) in R.
+
+```{r}
+# Read data from file 'herd_20.txt'
+herd_20 <- read.table("herd_20.txt", header = TRUE)
+
+# View a summary of the dataset
+summary(herd_20)
+
+# View the first six rows of the dataset
+head(herd_20)
+
+# View the structure of the dataset
+str(herd_20)
+```
+
+Lets add a column with the name of the herd manager
+
+```{r}
+herd_20$manager <- "Alice"
+
+# View the structure of the dataset again
+str(herd_20)
+
+# View the first six rows of the dataset
+head(herd_20)
+```

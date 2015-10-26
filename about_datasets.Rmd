@@ -1,3 +1,5 @@
+-----
+
 # prew_mort
 
 This dataset was obtained from [the webpage of the textbook: 'Veterinary
@@ -9,13 +11,13 @@ textbook.
 |:---------------:|:-------------:|:-------:|:------------:|
 |Jette Christensen|cross-sectional|  6552   |    litter    |
 
-#Reference
+## Reference
 
 Christensen J, Svensmark B. Evaluation of producer-recorded causes of
 preweaning mortality in Danish sow herds Prev Vet Med. 1997; 32:
 155-64.
 
-# Brief description
+## Brief description
 
 These data are a subset of 16 herds from a dataset collected by Jette
 Christensen in Denmark to study factors affecting preweaning mortality
@@ -26,7 +28,7 @@ The key outcome of interest is preweaning mortality with a litter
 classified as having preweaning mortality or not if one or more
 piglets died before weaning.
 
-# Table of variables
+## Table of variables
 
 | Variable   | Description                                               | Codes/units                                         |
 |------------|-----------------------------------------------------------|-----------------------------------------------------|
@@ -44,3 +46,56 @@ piglets died before weaning.
 | lsize      | litter size                                               |                                                     |
 | n          | number at risk in the litter                              |                                                     |
 | stillb     | number stillborn                                          |                                                     |
+
+-----
+
+# pig_adg
+
+This dataset was obtained from [the webpage of the textbook: 'Veterinary
+Epidemiologic Research'](http://www.upei.ca/ver/datasets-programs). The
+description of the dataset is taken from page 828 of the same
+textbook.
+
+|Contributor      |Study type     |# records|Unit of record|
+|:---------------:|:-------------:|:-------:|:------------:|
+|Theresa Bernardo |cross-sectional|  341    |    pig       |
+
+## Reference
+
+Bernardo TM, Dohoo IR, Donald A. Effect of ascariasis and respiratory
+deiseases on growth rates in swine. Can J Vet Res; 54: 278-84
+
+## Brief description
+
+These are data on the growth performance and abattoir findings of pigs
+from a selection of Price Edward Island, Canada farms. The data were
+collected to study the inter-relationships among respiratory
+disease(atrophic rhinitis and enzootic pneumonia), ascarid levels and
+daily weight gain. Atrophic rhinitis score was determined by splitting
+the snout and measuring the space ventral to the turbinates. An
+adjustment to the score was made if the nasal septum was
+deviated. Lung scores were recorded on a scale of 0 to 3 (negative to
+severe pneumonia) and then converted to either the presence or absence
+of pneumonia. Parasite burdens were evaluated using fecal egg counts,
+counts of adult worms in the intestine and visual assessment of the
+liver for ascarid tracks. Production data were recorded by monitoring
+the pigs on the farms of origin from birth through to slaughter.
+
+## Table of variables
+
+| Variable | Description                                                              | Codes/units                                      |
+|----------+--------------------------------------------------------------------------+--------------------------------------------------|
+| farm     | farm identification number                                               |                                                  |
+| pig      | pig identification number                                                |                                                  |
+| sex      | sex of the pig                                                           | 0 = female; 1 = castrate                         |
+| dtm      | days to market (ie from birth to slaughter)                              | days                                             |
+| adg      | average daily weight gain                                                | gm                                               |
+| mm       | measurement of snout space                                               | mm                                               |
+| ar       | atrophic rhinitis score                                                  | 0-5                                              |
+| lu       | lung score for enzootic pneumonia                                        | 0 = negative; 1 = mild, 2 = moderate; 3 = severe |
+| pn       | pneumonia (lu>0)                                                         | 0/1                                              |
+| epg5     | fecal gastrointestinal nematodes in small intestine at time of slaughter | eggs/5 gm                                        |
+| worms    | count of nematodes in small intestine at time of slaughter               |                                                  |
+| li       | liver score (based on number of parasite induced 'white spots')          | 0 = negative; 1 = mild, 2 = severe               |
+| ar2      | severe atrophic rhinitis (ar>4)                                          | 0/1                                              |
+
