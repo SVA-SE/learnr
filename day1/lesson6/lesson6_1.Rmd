@@ -69,9 +69,91 @@ crosstab
 
 From the above output we can see that the odds of a pig having
 pneumonia is `r crosstab$tab[2, 5]` and that the calculated 95% confidence
-interval around that estimate is also available (`r
-crosstab$tab[2, 6]` - `r crosstab$tab[2, 7]`). The _P_-value that
-corresponds to the chi-sq is given
-(`r crosstab$tab[2, 8]`) but not chi-sq statistic itself.
+interval around that estimate is also available (`r crosstab$tab[2, 6]` -
+`r crosstab$tab[2, 7]`).
+The _P_-value that corresponds to the chi-sq is given
+(`r crosstab$tab[2, 8]`) but not chi-sq statistic itself. Note that
+the confidence intervals and the _P_-values may not agree because the
+methods that the authors have used are not clear
 
-The next thing that is done
+The next thing that is done is a logistic regression with a random
+effect to adjust for the repeated measurement within farm. Before that,
+we will do the regression without the random effect:
+
+```{r, warning = FALSE, message = FALSE}
+
+result <- glm(pn ~ ar_g1, data = pig_adg, family = binomial)
+
+summary(result)
+
+```
+
+Conveniently, in this function, we express the model in formula
+notation and the function takes an argument for the name of the
+dataset so you don't have to write ´data$variablename´ for each
+variable you test. You also need to specify the model family, in this
+case it is a logistic regression and therefore, binomial. You can also
+confirm that the odds ratio from the cross tabulation that we did
+agrees with the estimate from the model. The coefficient (log odds) on
+Atrophic rhinitis is `r result$coefficients[2]` and therefore the Odds
+ratio=
+e^`r result$coefficients[2]`^ = `r exp(result$coefficients[2])`
+
+Let's now add the random effect for farm, we need to use another
+library `lme4` library to do this.
+
+```{r, warning =FALSE, message = FALSE}
+
+library(lme4)
+
+result2 <- glmer(pn ~ ar_g1 + (1 | farm), data = pig_adg, family = binomial)
+
+summary(result2)
+
+```
+
+Here you can see the notation used to add a random intercept to the
+model. `(1 | farm)`. Now the coefficient on the atrophic rhinitis has
+changed slightly after adjusting for the farm effect. The new adjusted
+odds ratio is ratio=
+e^`r result2@beta[2]`^ = `r exp(result2@beta[2])`, however the
+estimate of the odds ratio is not significantly different from 1 as
+indicated by the _P_-value = `r summary(result2)$coefficients[2,4]`.
+Also in the example the variance of the farm random
+effect is given. This is `r summary(result2)$varcor$farm[1]` and has a
+standard error that is different than the value given in the book
+because the method of calculation is different.
+
+Now we will look at how to determine model fit by inspecting residuals
+from a logistic model. First we will make the model more interesting
+by adding another variable.
+
+```{r}
+
+result3 <- glmer(pn ~ ar_g1 + dtm  + (1 | farm), data = pig_adg, family = binomial)
+
+```
+
+You'll notice in the output that `lme4` asks us to consider rescaling
+a variable in the model. If we want to do that, then we don't have to
+generate a new dummy variable in the data frame (Although you could do
+that too), can use a log function in the model call as follows:
+
+```{r}
+
+result4 <- glmer(pn ~ ar_g1 + log(dtm)  + (1 | farm), data = pig_adg, family = binomial)
+
+summary(result4)
+
+```
+
+If this was real life, I suppose we would consider the biological
+plausibility of the model that we have generated and look at the
+_P_-values and maybe throw out the ar_g1 variable and perhaps build a
+linear regression with days to market as the outcome and pneumonia as
+the independent variable.... This is just an example to teach you how
+to use R, so try to forget about whether or not the biology or
+modeling approach makes sense.
+
+Let's make a plot of the model predictions.
+
