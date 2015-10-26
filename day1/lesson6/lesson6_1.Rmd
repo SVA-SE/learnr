@@ -19,3 +19,59 @@ are almost the same and are on pages 499-520.
 pig_adg<- read.csv("pig_adg.csv")
 
 ```
+
+Example 22.1 on page 581 illustrates the analysis of the association
+of atrophic rhinitis on pneumonia in pigs that are clustered in
+farms.
+
+Let's start by generating the necessary variables to do the analysis
+that the authors have done.
+
+The authors have given us the `pn` variable already, presence or
+absence or pneumonia in the pig. We just need to generate the `ar_g1`
+variable that is presence of atrophic rhinitis with a score greater
+than 1.
+
+```{r}
+pig_adg$ar_g1 <- NA
+pig_adg$ar_g1[pig_adg$ar > 1] <- 1
+pig_adg$ar_g1[pig_adg$ar <= 1] <- 0
+```
+
+Then we can be neat and tidy and label the categorical variables that
+we are going to use
+
+```{r}
+pig_adg$ar_g1 <- factor(pig_adg$ar_g1, levels = c(0,1), labels = c("no atrophic", "yes atrophic"))
+
+pig_adg$pn <- factor(pig_adg$pn, levels = c(0,1), labels = c("no pneumonia", "mild-severe pneumonia"))
+
+```
+
+Now we can do the cross-tabulation that they did
+
+```{r}
+table(pig_adg$pn, pig_adg$ar_g1)
+
+```
+
+The authors also calculated odds ratio and tested the difference in
+proportions in the groups with a chi-square test. We can do that
+easily with the `epitools` library
+
+```{r}
+library(epitools)
+
+crosstab <- epitab(pig_adg$pn, pig_adg$ar_g1, pvalue = "chi2")
+crosstab
+
+```
+
+From the above output we can see that the odds of a pig having
+pneumonia is `r crosstab$tab[2, 5]` and that the calculated 95% confidence
+interval around that estimate is also available (`r
+crosstab$tab[2, 6]` - `r crosstab$tab[2, 7]`). The _P_-value that
+corresponds to the chi-sq is given
+(`r crosstab$tab[2, 8]`) but not chi-sq statistic itself.
+
+The next thing that is done
