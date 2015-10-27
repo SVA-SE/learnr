@@ -13,8 +13,6 @@ discrete data' (Pages 579-606) in the 2nd edition of the
 textbook. If you have the first edition of the same book the examples
 are almost the same and are on pages 499-520.
 
-
-
 ```{r}
 pig_adg<- read.csv("pig_adg.csv")
 
@@ -59,6 +57,8 @@ The authors also calculated odds ratio and tested the difference in
 proportions in the groups with a chi-square test. We can do that
 easily with the `epitools` library
 
+## Contingency table
+
 ```{r}
 library(epitools)
 
@@ -80,11 +80,13 @@ The next thing that is done is a logistic regression with a random
 effect to adjust for the repeated measurement within farm. Before that,
 we will do the regression without the random effect:
 
+## Mixed effects logistic regression
+
 ```{r, warning = FALSE, message = FALSE}
 
-result <- glm(pn ~ ar_g1, data = pig_adg, family = binomial)
+model <- glm(pn ~ ar_g1, data = pig_adg, family = binomial)
 
-summary(result)
+summary(model)
 
 ```
 
@@ -95,9 +97,9 @@ variable you test. You also need to specify the model family, in this
 case it is a logistic regression and therefore, binomial. You can also
 confirm that the odds ratio from the cross tabulation that we did
 agrees with the estimate from the model. The coefficient (log odds) on
-Atrophic rhinitis is `r result$coefficients[2]` and therefore the Odds
+Atrophic rhinitis is `r model$coefficients[2]` and therefore the Odds
 ratio=
-e^`r result$coefficients[2]`^ = `r exp(result$coefficients[2])`
+e^`r model$coefficients[2]`^ = `r exp(model$coefficients[2])`
 
 Let's now add the random effect for farm, we need to use another
 library `lme4` library to do this.
@@ -106,9 +108,9 @@ library `lme4` library to do this.
 
 library(lme4)
 
-result2 <- glmer(pn ~ ar_g1 + (1 | farm), data = pig_adg, family = binomial)
+model2 <- glmer(pn ~ ar_g1 + (1 | farm), data = pig_adg, family = binomial)
 
-summary(result2)
+summary(model2)
 
 ```
 
@@ -116,11 +118,11 @@ Here you can see the notation used to add a random intercept to the
 model. `(1 | farm)`. Now the coefficient on the atrophic rhinitis has
 changed slightly after adjusting for the farm effect. The new adjusted
 odds ratio is ratio=
-e^`r result2@beta[2]`^ = `r exp(result2@beta[2])`, however the
+e^`r model2@beta[2]`^ = `r exp(model2@beta[2])`, however the
 estimate of the odds ratio is not significantly different from 1 as
-indicated by the _P_-value = `r summary(result2)$coefficients[2,4]`.
+indicated by the _P_-value = `r summary(model2)$coefficients[2,4]`.
 Also in the example the variance of the farm random
-effect is given. This is `r summary(result2)$varcor$farm[1]` and has a
+effect is given. This is `r summary(model2)$varcor$farm[1]` and has a
 standard error that is different than the value given in the book
 because the method of calculation is different.
 
@@ -130,7 +132,7 @@ by adding another variable.
 
 ```{r}
 
-result3 <- glmer(pn ~ ar_g1 + dtm  + (1 | farm), data = pig_adg, family = binomial)
+model3 <- glmer(pn ~ ar_g1 + dtm  + (1 | farm), data = pig_adg, family = binomial)
 
 ```
 
@@ -141,7 +143,7 @@ that too), can use a log function in the model call as follows:
 
 ```{r}
 
-result4 <- glmer(pn ~ ar_g1 + log(dtm)  + (1 | farm), data = pig_adg, family = binomial)
+model4 <- glmer(pn ~ ar_g1 + log(dtm)  + (1 | farm), data = pig_adg, family = binomial)
 
 ```
 or with the dummy variable:
@@ -150,9 +152,9 @@ or with the dummy variable:
 
 pig_adg$log_dtm <- log(pig_adg$dtm)
 
-result4 <- glmer(pn ~ ar_g1 + log_dtm  + (1 | farm), data = pig_adg, family = binomial)
+model5 <- glmer(pn ~ ar_g1 + log_dtm  + (1 | farm), data = pig_adg, family = binomial)
 
-summary(result4)
+summary(model5)
 
 ```
 
@@ -167,22 +169,100 @@ modeling approach makes sense.
 We need a dataframe of all the possible values of the covariates in
 order to predict the outcomes for all levels
 
+## Predictions from regression
+
 ```{r}
 
 adg_predict <- expand.grid(ar_g1 = levels(pig_adg$ar_g1),
-                           log_dtm   = seq(min(pig_adg$dtm), max(pig_adg$dtm)),
+                           dtm   = seq(min(pig_adg$dtm), max(pig_adg$dtm)),
                            farm  = sort(unique(pig_adg$farm)))
 
-adg_predict$log_dtm <- log(adg_predict$log_dtm)
+adg_predict$log_dtm <- log(adg_predict$dtm)
+```
+
+Have a look at the first few lines of this prediction dataframe
+```{r}
+head(adg_predict)
+```
+
+Make the predictions based on the `model5` model. In this case the
+`predict` function will use the `log_dtm` variable to do the
+prediction in the `adg_predict` dataframe to calculate the predicted
+log odds because the was the name of the variable when the model was specified.
+
+```{r}
+
+adg_predict$pred_model5 <- predict(model5, adg_predict)
+
+```
+
+We should get the same result if we do the prediction with `model4`
+and internally the predictions will be calculated based on the `dtm`
+variable and the `log` operation on the `dtm` value will be done by
+the model.
+
+```{r}
+
+adg_predict$pred_model4 <- predict(model4, adg_predict)
+
+```
+
+Have a look at the first few rows of the prediction dataframe
+`adg_predict`
+
+```{r}
 
 head(adg_predict)
 
 ```
 
-Make the predictions based on the `result4` model.
+## Plot predictions
+
+First we can plot the predictions with one line for each random
+intercept (each farm) and the lines coloured by the atrophic rhinitis
+variable.
+
+```{r}
+library(ggplot2)
+
+ggplot(adg_predict, aes(x = dtm, y = pred_model4, group = interaction(ar_g1, farm), colour = ar_g1)) +
+    geom_line()
+
+```
+
+This illustrates the magnitude of the effect of herd compared to the
+other variables in the model. Not I guess it's not too surprising that
+the effect of atrophic rhinitis on pneumonia was not significant after
+adjusting for farm. We can also just look at the model predictions for
+an average farm. The shape of the model is the same for all farms
+because we have no interactions with farm. Start by calculating the
+mean predictions for each `dtm` and `ar_g1` level across farms:
 
 ```{r}
 
-adg_predict$log_odds <- predict(result4, adg_predict)
+library(plyr)
+prediction2 <- ddply(.data = adg_predict, .variables = c("dtm", "ar_g1"), .fun = function(x){mean(x$pred_model4)})
+
+head(prediction2)
+```
+
+And plot this:
+
+```{r}
+ggplot(prediction2, aes(x = dtm, y = V1, group = ar_g1, colour = ar_g1)) +
+    geom_line()
 
 ```
+
+Maybe we want to view the predictions as predicted probability instead
+of on the log odds scale
+
+```{r}
+prediction2$prob <- exp(prediction2$V1)/(1+exp(prediction2$V1))
+
+ggplot(prediction2, aes(x = dtm, y = prob, group = ar_g1, colour = ar_g1)) +
+    geom_line()
+
+```
+
+
