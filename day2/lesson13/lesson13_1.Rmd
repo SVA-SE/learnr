@@ -1,0 +1,117 @@
+[![Previous](../../img/previous.png)](../../day2/lesson12/lesson12_1.html)
+[![Index](../../img/home.png)](../../index.html)
+[![Next](../../img/next.png)](../lesson14/lesson14_1.html)
+[![Folder](../../img/folder.png)](./)
+
+---
+
+# Communicating your findings in R - Create a report of your analysis results
+
+## Background
+
+When we analyze data and report our findings, most of use the
+strategy of working with our data in a statistical software package
+and saving a figure and then pasting that figure into a word document
+to produce a report or a paper. When you are working in a programming
+environment like R you have the opportunity to integrate your
+analysis, and reporting of results into a seamless process so that if
+you need to make a change to your original data after you already have
+submitted a report then you can do that and immediately have a new
+report that reflects the changes to the data. This is done by using a
+typesetting language like LATEX or markdown to write your text and R
+to do you data analysis. The markdown language is integrated with R
+with the `rmarkdown` package.
+
+The entire website that you are viewing right now was generated with
+`rmarkdown`, so each of the chucks of th webpages that are R code were
+run through the R software as the webpage was being built and the
+figures and results were inserted. If you look at
+[lesson6.1](../../day1/lesson6/lesson6_1.html) you can see under the
+'Contingency table' section that the odds ratio and 95% confidence
+intervals are in the text. These numbers were also calculated by R
+during the building of the webpage.
+
+A more elaborate example of this idea is [SVA's annual surveillance
+report](http://www.sva.se/globalassets/redesign2011/pdf/om_sva/publikationer/surveillance2014.pdf). This
+document was created with LATEX and R. All of the figures were
+produced in `ggplot2` and the typesetting done with LATEX which allows
+for fancier formatting that is not part of `rmarkdown`
+
+The philosophy of markdown is to have a source document that is
+readable and simple to edit on its own and have the ability to generate
+several different outputs from this source material.
+
+## Getting started
+
+There are two basic components to an `rmarkdown` file:
+
+1. `markdown`
+
+    * This is essentially just text. You have some opportunities to
+      format your text too. Look at [here learn about the
+      markdown format](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+
+
+2. `R code`
+
+    * The r-code is contained within two places in the document:
+        * Chunks
+        * Inline code
+
+```{r, echo = FALSE}
+
+rinline <- function(code){
+  html <- '<code  class="r">``` `r CODE` ```</code>'
+  sub("CODE", code, html)
+}
+
+```
+
+### Chunks
+
+Chunks are pieces of the r markdown file that are bound by 3 backticks
+on their own lines like this:
+
+<pre><code>```{r}
+
+ #Some R code
+
+```</code></pre>
+
+### Inline code
+
+Inline code allows you to call a value from an r object right in your
+text. It is also bound by a single backtick, like this:
+
+A sentence with `r rinline("# Some R code")` in the middle.
+
+R-studio has a nice
+[cheatsheet for rmarkdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+to remind you of the syntax for the R code and markdown in the file.
+
+## A Basic R-markdown report
+
+To generate an r-markdown report you can start in R-studio by
+selecting
+
+* File
+    * New file
+        * R markdown...
+
+Give it a name (my_report maybe?) and leave the rest alone.
+
+Now you will have a file named 'Untitled.Rmd'. '.Rmd' is the extension
+for rmarkdown files.
+
+If you click the Knit HTML button at the top of the window, R renders
+the '.Rmd' to a web page and the page pops up in a browser window.
+
+If you save the .Rmd as 'my__report.Rmd' then you will also get the
+file 'my_report.html' back in the same directory as the rmarkdown
+file. This is the file that you can distribute as your report.
+
+## A custom report
+
+
+
+

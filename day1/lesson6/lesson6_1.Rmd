@@ -59,7 +59,7 @@ easily with the `epitools` library
 
 ## Contingency table
 
-```{r}
+```{r, warning = FALSE}
 library(epitools)
 
 crosstab <- epitab(pig_adg$pn, pig_adg$ar_g1, pvalue = "chi2")
