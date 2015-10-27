@@ -11,7 +11,7 @@ data. This may be due to the wide accessibly of the tool and the
 because many developers are working on libraries for data plotting in
 R. One such development is the `ggplot2` library which you already
 were introduced to in a few of the previous examples in this
-material.´ggplot2´ is however not the only way to plot your data in
+material.`ggplot2` is however not the only way to plot your data in
 R. R has built in plotting functionality and many functions that you
 use allow you to wrap them in plot and the author of the function has
 taken care of what the plot should look like. We'll come back to
@@ -27,6 +27,7 @@ pig_adg$ar_g1[pig_adg$ar > 1] <- 1
 pig_adg$ar_g1[pig_adg$ar <= 1] <- 0
 pig_adg$ar_g1 <- factor(pig_adg$ar_g1, levels = c(0,1), labels = c("no atrophic", "yes atrophic"))
 pig_adg$pn <- factor(pig_adg$pn, levels = c(0,1), labels = c("no pneumonia", "mild-severe pneumonia"))
+pig_adg$sex <- factor(pig_adg$sex, levels = c(0,1), labels = c("female", "male"))
 
 ```
 
@@ -57,263 +58,297 @@ plot(x = df$adg, y = df$dtm, type = "line")
 
 We could also plot a model
 
-# Work through examples from
-  [Veterinary Epidemiologic Research](http://www.upei.ca/ver/) in R.
-
-We will work through the examples from the chapter on 'Mixed models for
-discrete data' (Pages 579-606) in the 2nd edition of the
-[Veterinary Epidemiologic Research](http://www.upei.ca/ver/)
-textbook. If you have the first edition of the same book the examples
-are almost the same and are on pages 499-520.
-
 ```{r}
-pig_adg<- read.csv("pig_adg.csv")
+
+plot(lm(formula = dtm ~ adg, data = pig_adg))
 
 ```
 
-Example 22.1 on page 581 illustrates the analysis of the association
-of atrophic rhinitis on pneumonia in pigs that are clustered in
-farms.
+The code above is the `plot` function wrapped around the `lm` function
+(linear model). What we get back are the plots that the authors of `lm` felt
+would be most useful, in this case some plots of the residuals.
 
-Let's start by generating the necessary variables to do the analysis
-that the authors have done.
+Many object types have an associated plot function that R knows how to
+employ. You should not be afraid to run plot on objects and see what
+you get back. Sometimes these plots are very useful and sometimes
+not.
 
-The authors have given us the `pn` variable already, presence or
-absence or pneumonia in the pig. We just need to generate the `ar_g1`
-variable that is presence of atrophic rhinitis with a score greater
-than 1.
+## Basic plotting
 
+We will run through how to do point (scatter), line, bar, and box
+plots.
+
+
+# Scatter plot
+
+Above you already saw the scatter plot.
 ```{r}
-pig_adg$ar_g1 <- NA
-pig_adg$ar_g1[pig_adg$ar > 1] <- 1
-pig_adg$ar_g1[pig_adg$ar <= 1] <- 0
+
+plot(x = pig_adg$adg, y = pig_adg$dtm,
+     type = "point", pch = 20
+     )
 ```
 
-Then we can be neat and tidy and label the categorical variables that
-we are going to use
+In the above we are explicit about the `point` argument and change the
+     plotting character with `pch`. You can use many different
+     plotting characters in R.
 
-```{r}
-pig_adg$ar_g1 <- factor(pig_adg$ar_g1, levels = c(0,1), labels = c("no atrophic", "yes atrophic"))
-
-pig_adg$pn <- factor(pig_adg$pn, levels = c(0,1), labels = c("no pneumonia", "mild-severe pneumonia"))
-
+```{r, echo = FALSE, fig.width = 4, fig.height = 4, fig.align = "center"}
+generateRPointShapes<-function(){
+  oldPar<-par()
+  par(font=2, mar=c(0.5,0,0,0))
+  y=rev(c(rep(1,6),rep(2,5), rep(3,5), rep(4,5), rep(5,5)))
+  x=c(rep(1:5,5),6)
+  plot(x, y, pch = 0:25, cex=1.5, ylim=c(1,5.5), xlim=c(1,6.5),
+       axes=FALSE, xlab="", ylab="", bg="blue")
+  text(x, y, labels=0:25, pos=3)
+  par(mar=oldPar$mar,font=oldPar$font )
+}
+generateRPointShapes()
 ```
 
-Now we can do the cross-tabulation that they did
-
-```{r}
-table(pig_adg$pn, pig_adg$ar_g1)
-
-```
-
-The authors also calculated odds ratio and tested the difference in
-proportions in the groups with a chi-square test. We can do that
-easily with the `epitools` library
-
-## Contingency table
-
-```{r}
-library(epitools)
-
-crosstab <- epitab(pig_adg$pn, pig_adg$ar_g1, pvalue = "chi2")
-crosstab
-
-```
-
-From the above output we can see that the odds of a pig having
-pneumonia is `r crosstab$tab[2, 5]` and that the calculated 95% confidence
-interval around that estimate is also available (`r crosstab$tab[2, 6]` -
-`r crosstab$tab[2, 7]`).
-The _P_-value that corresponds to the chi-sq is given
-(`r crosstab$tab[2, 8]`) but not chi-sq statistic itself. Note that
-the confidence intervals and the _P_-values may not agree because the
-methods that the authors have used are not clear
-
-The next thing that is done is a logistic regression with a random
-effect to adjust for the repeated measurement within farm. Before that,
-we will do the regression without the random effect:
-
-## Mixed effects logistic regression
-
-```{r, warning = FALSE, message = FALSE}
-
-model <- glm(pn ~ ar_g1, data = pig_adg, family = binomial)
-
-summary(model)
-
-```
-
-Conveniently, in this function, we express the model in formula
-notation and the function takes an argument for the name of the
-dataset so you don't have to write ´data$variablename´ for each
-variable you test. You also need to specify the model family, in this
-case it is a logistic regression and therefore, binomial. You can also
-confirm that the odds ratio from the cross tabulation that we did
-agrees with the estimate from the model. The coefficient (log odds) on
-Atrophic rhinitis is `r model$coefficients[2]` and therefore the Odds
-ratio=
-e^`r model$coefficients[2]`^ = `r exp(model$coefficients[2])`
-
-Let's now add the random effect for farm, we need to use another
-library `lme4` library to do this.
-
-```{r, warning =FALSE, message = FALSE}
-
-library(lme4)
-
-model2 <- glmer(pn ~ ar_g1 + (1 | farm), data = pig_adg, family = binomial)
-
-summary(model2)
-
-```
-
-Here you can see the notation used to add a random intercept to the
-model. `(1 | farm)`. Now the coefficient on the atrophic rhinitis has
-changed slightly after adjusting for the farm effect. The new adjusted
-odds ratio is ratio=
-e^`r model2@beta[2]`^ = `r exp(model2@beta[2])`, however the
-estimate of the odds ratio is not significantly different from 1 as
-indicated by the _P_-value = `r summary(model2)$coefficients[2,4]`.
-Also in the example the variance of the farm random
-effect is given. This is `r summary(model2)$varcor$farm[1]` and has a
-standard error that is different than the value given in the book
-because the method of calculation is different.
-
-Now we will look at how to determine model fit by inspecting residuals
-from a logistic model. First we will make the model more interesting
-by adding another variable.
+You can also set the colour of the points. The colours can be any of
+the available
+[text names](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) or
+a colour in [hexadecimal format](http://www.w3schools.com/tags/ref_colorpicker.asp).
 
 ```{r}
 
-model3 <- glmer(pn ~ ar_g1 + dtm  + (1 | farm), data = pig_adg, family = binomial)
+plot(x = pig_adg$adg, y = pig_adg$dtm,
+     type = "point", pch = 20, col = "red"
+     )
 
 ```
 
-You'll notice in the output that `lme4` asks us to consider rescaling
-a variable in the model. If we want to do that, then we don't have to
-generate a new dummy variable in the data frame (Although you could do
-that too), can use a log function in the model call as follows:
+We can change the axis titles.
 
 ```{r}
 
-model4 <- glmer(pn ~ ar_g1 + log(dtm)  + (1 | farm), data = pig_adg, family = binomial)
-
-```
-or with the dummy variable:
-
-```{r}
-
-pig_adg$log_dtm <- log(pig_adg$dtm)
-
-model5 <- glmer(pn ~ ar_g1 + log_dtm  + (1 | farm), data = pig_adg, family = binomial)
-
-summary(model5)
+plot(x = pig_adg$adg, y = pig_adg$dtm,
+     type = "point", pch = 20, col = "#E60000",
+     xlab = "Average daily gain (grams)",
+     ylab = "Days to market"
+     )
 
 ```
 
-If this was real life, I suppose we would consider the biological
-plausibility of the model that we have generated and look at the
-_P_-values and maybe throw out the ar_g1 variable and perhaps build a
-linear regression with days to market as the outcome and pneumonia as
-the independent variable.... This is just an example to teach you how
-to use R, so try to forget about whether or not the biology or
-modeling approach makes sense.
-
-We need a dataframe of all the possible values of the covariates in
-order to predict the outcomes for all levels
-
-## Predictions from regression
+(Note we also are defining the red colour of the points above in
+hexadecimal.) Then we could change the tip marks and tick labels on
+the axis. We start by generating a plot without tick marks and then
+adding them with the axis function and defining the label orientation
+as well.
 
 ```{r}
 
-adg_predict <- expand.grid(ar_g1 = levels(pig_adg$ar_g1),
-                           dtm   = seq(min(pig_adg$dtm), max(pig_adg$dtm)),
-                           farm  = sort(unique(pig_adg$farm)))
+plot(x = pig_adg$adg, y = pig_adg$dtm,
+     type = "point", pch = 20, col = "#E60000",
+     xlab = "Average daily gain (grams)",
+     ylab = "Days to market",
+     yaxt = "n", xaxt = "n"
+     )
 
-adg_predict$log_dtm <- log(adg_predict$dtm)
-```
-
-Have a look at the first few lines of this prediction dataframe
-```{r}
-head(adg_predict)
-```
-
-Make the predictions based on the `model5` model. In this case the
-`predict` function will use the `log_dtm` variable to do the
-prediction in the `adg_predict` dataframe to calculate the predicted
-log odds because the was the name of the variable when the model was specified.
-
-```{r}
-
-adg_predict$pred_model5 <- predict(model5, adg_predict)
+axis(side = 1, tck = 1, las = 2)
+axis(side = 2, tck = 1, las = 2)
 
 ```
 
-We should get the same result if we do the prediction with `model4`
-and internally the predictions will be calculated based on the `dtm`
-variable and the `log` operation on the `dtm` value will be done by
-the model.
+The `side` argument to the `axis` function defines which side of the
+graph you want an axis on (1=bottom, 2=left, 3=top, 4=right) and the
+`tch` argument the fraction of the plotting region that the tick
+should cover. The `las` argument gives the label orientation (0 =
+parallel, 2 = perpendicular). There are plenty of other things you can
+change about your graph and plenty of online tutorials to find the answers
+that you need to generate just the plot you want.
+
+## The line plot
+
+As we saw above in the introduction to basic plotting the line plot
+doesn't really lend itself well to plotting the current dataset. We
+most often use it to plot a prediction, or a smoothed model or our
+data to lets quickly generate that so we have some data to work with.
 
 ```{r}
 
-adg_predict$pred_model4 <- predict(model4, adg_predict)
+model <- lm(formula = dtm ~ adg, data = pig_adg)
+predict_data <- data.frame("adg" = seq(min(pig_adg$adg), max(pig_adg$adg)))
+
+predict_data$prediction_dtm <- predict(model, predict_data)
+
+```
+So now we have a dataset and can plot a line
+
+```{r}
+plot(x = predict_data$adg, y = predict_data$prediction_dtm,
+     type = "line", lwd = 2, col = "red",
+     xlab = "Average daily gain (grams)",
+     ylab = "Days to market")
 
 ```
 
-Have a look at the first few rows of the prediction dataframe
-`adg_predict`
+Here we define the plot in much the same way as the `point` plot but
+use `type = "line"` and introduce another parameter specific to the
+`line` plot which is `lwd` or line weight. In this case 2 gives a
+slightly thicker line than the default 1.
+
+You may wish to plot the prediction from you model ontop of the
+scattered points. You do this by first plotting the points and then
+overlaying the line.
 
 ```{r}
 
-head(adg_predict)
+plot(x    = pig_adg$adg,
+     y    = pig_adg$dtm,
+     type = "point",
+     pch  = 20, col = "#E60000",
+     xlab = "Average daily gain (grams)",
+     ylab = "Days to market",
+     yaxt = "n", xaxt = "n")
+
+axis(side = 1, tck = 1, las = 2)
+axis(side = 2, tck = 1, las = 2)
+
+lines(x = predict_data$adg, y = predict_data$prediction_dtm,
+     lwd = 10, col = "#0000FF80")
 
 ```
 
-## Plot predictions
+The `lines` function adds lines to previous plots. We use the `lwd`
+argument to make a really think line and choose a blue colour that has
+some transparency in this case.
 
-First we can plot the predictions with one line for each random
-intercept (each farm) and the lines coloured by the atrophic rhinitis
-variable.
+## The bar chart
+
+Bar charts are usually used to illustrate count data so let's
+summarize our dataframe into some categories of observations that are
+counted. We'll use the table function to generate a cross tabulation
+of the data across 1 or 2 variables.
 
 ```{r}
-library(ggplot2)
+counts <- table(pig_adg$ar)
+counts
+```
 
-ggplot(adg_predict, aes(x = dtm, y = pred_model4, group = interaction(ar_g1, farm), colour = ar_g1)) +
-    geom_line()
+Now use the `barplot` function to generate a plot
+
+```{r}
+
+barplot(counts,
+        xlab = "Atrophic rhinitis score",
+        ylab = "Number of Animals")
 
 ```
 
-This illustrates the magnitude of the effect of herd compared to the
-other variables in the model. Not I guess it's not too surprising that
-the effect of atrophic rhinitis on pneumonia was not significant after
-adjusting for farm. We can also just look at the model predictions for
-an average farm. The shape of the model is the same for all farms
-because we have no interactions with farm. Start by calculating the
-mean predictions for each `dtm` and `ar_g1` level across farms:
-
 ```{r}
-
-library(plyr)
-prediction2 <- ddply(.data = adg_predict, .variables = c("dtm", "ar_g1"), .fun = function(x){mean(x$pred_model4)})
-
-head(prediction2)
+counts <- table(pig_adg$pn, pig_adg$ar)
+counts
 ```
 
-And plot this:
+Now use the `barplot` function to generate a plot
 
 ```{r}
-ggplot(prediction2, aes(x = dtm, y = V1, group = ar_g1, colour = ar_g1)) +
-    geom_line()
+
+barplot(counts,
+        xlab = "Atrophic rhinitis score",
+        ylab = "Number of Animals",
+        legend = rownames(counts))
 
 ```
 
-Maybe we want to view the predictions as predicted probability instead
-of on the log odds scale
+Maybe, (like me) you hate stacked bar plots so you want a side-by-side
+plot instead.
 
 ```{r}
-prediction2$prob <- exp(prediction2$V1)/(1+exp(prediction2$V1))
 
-ggplot(prediction2, aes(x = dtm, y = prob, group = ar_g1, colour = ar_g1)) +
-    geom_line()
+barplot(counts,
+        xlab = "Atrophic rhinitis score",
+        ylab = "Number of Animals",
+        legend = rownames(counts), beside = TRUE)
+
+```
+
+And you want some colour:
+
+```{r}
+
+barplot(counts,
+        xlab   = "Atrophic rhinitis score",
+        ylab   = "Number of Animals",
+        legend = rownames(counts),
+        col    = c("firebrick3", "dodgerblue2"),
+        beside = TRUE)
+
+```
+
+## The boxplot
+
+
+The box plot and parallel box plot lends itself well to summarizing
+continuous data over categories. So we can look at 1 variable or 2.
+
+
+```{r}
+
+boxplot(pig_adg$dtm,
+        ylab = "Days to market", col = "darkkhaki")
+
+```
+
+And over the atrophic rhinitis score
+
+```{r}
+
+boxplot(pig_adg$dtm ~ pig_adg$ar,
+        ylab = "Days to market", col = "darkkhaki",
+        xlab = "Atrophic Rhinitis score")
+
+```
+
+Note that often you can express yourself in formula notation the same
+way you do when specify regression models.
+
+These are the basic plot types. Of course you can produce, surface
+plots, maps, 3d plots.... Pretty much anything that you can
+dream up. But most of the time you will find the plots above to be
+sufficient to help you understand many datasets.
+
+# Now you try
+
+Build a line graph with Days to market on the y-axis, Average daily
+gain on the x-axis. Plot two separate lines, one for males and one for females
+
+We'll generate linear model and predictions first, then you do the graph:
+
+```{r}
+
+model <- lm(formula = dtm ~ adg + sex, data = pig_adg)
+predict_data <- data.frame(
+    expand.grid("adg" = seq(min(pig_adg$adg), max(pig_adg$adg)),
+                "sex" = factor(c(0,1), levels = c(0,1), labels = c("female", "male"))))
+
+predict_data$prediction_dtm <- predict(model, predict_data)
+
+```
+
+Now use the `predict_data` data frame to make your plot. **HINT** :
+Generate the plot with just one sex and then add the other. You will
+find that this seems a little tedious and we will later look at the
+notation in `ggplot2` which will make the production of this type of
+graph slightly easier.
+
+```{r, echo = FALSE, eval = FALSE}
+
+data_female <- predict_data[predict_data$sex == "female",]
+data_male   <- predict_data[predict_data$sex == "male",]
+
+
+plot(x = data_female$prediction_dtm, y =  data_female$adg,
+     type = "line", lwd = 2, col = "red",
+     xlab = "Average daily gain (grams)",
+     ylab = "Days to market")
+
+lines(x = data_male$prediction_dtm, y =  data_male$adg,
+     lwd = 2, col = "blue")
+
+legend(220,700,c("female", "male"), lty = c(1,1), lwd = c(2.5, 2.5), col = c("red", "blue"))
 
 ```
