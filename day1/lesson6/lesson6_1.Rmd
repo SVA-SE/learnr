@@ -264,5 +264,3 @@ ggplot(prediction2, aes(x = dtm, y = prob, group = ar_g1, colour = ar_g1)) +
     geom_line()
 
 ```
-
-
