@@ -18,7 +18,7 @@ Summarizing data means exploring your data in...
 * Read in data from comma separated format to a dataframe named
   'my_data'.
 
-```{r}
+```{r, comment = NA}
 
 my_data <- read.csv("prewmort.csv")
 
@@ -28,7 +28,7 @@ my_data <- read.csv("prewmort.csv")
   information about the names of the variables in the dataset and the
   types of data that are in each variable.
 
-```{r}
+```{r, comment = NA}
 
 str(my_data)
 
@@ -39,7 +39,7 @@ str(my_data)
   size) variable in the 'my_data' dataframe returns the minimum,
   maximum, some percentiles and the mean.
 
-```{r}
+```{r, comment = NA}
 
 summary(my_data$lsize)
 
@@ -48,7 +48,7 @@ summary(my_data$lsize)
 * If you are summarizing a variable that is categorical like
 'herdtype' then 'summary' will not help you at first:
 
-```{r}
+```{r, comment = NA}
 summary(my_data$herdtype)
 ```
 
@@ -61,7 +61,7 @@ that the variable we are dealing with is a categorical variable, known
 in R as a 'factor', then it will give us a more useful summary of the
 data.
 
-```{r}
+```{r, comment = NA}
 
 my_data$herdtype <- factor(my_data$herdtype,
                            levels = c(0,1),

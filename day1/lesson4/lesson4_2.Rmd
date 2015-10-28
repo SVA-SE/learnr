@@ -20,7 +20,7 @@ frequency of observations across multiple variables.
 * Read in data from comma separated format to a dataframe named
   'my_data'.
 
-```{r}
+```{r, comment = NA}
 
 my_data <- read.csv("prewmort.csv")
 
@@ -28,7 +28,7 @@ my_data <- read.csv("prewmort.csv")
 
 * We will tabulate the variable 'herdtype' in the 'my_data' dataframe
 
-```{r}
+```{r, comment = NA}
 
 table(my_data$herdtype)
 
@@ -43,7 +43,7 @@ because that's what you asked for
 * We can also ask R for a cross-tabulation by supplying a second
 argument to the 'table' function.
 
-```{r}
+```{r, comment = NA}
 
 table(my_data$herdtype, my_data$year)
 
@@ -55,7 +55,7 @@ table(my_data$herdtype, my_data$year)
 
 A 1x14 table:
 
-```{r}
+```{r, comment = NA}
 
 table(my_data$sow_parity)
 
@@ -63,7 +63,7 @@ table(my_data$sow_parity)
 
 Or 14x20 table
 
-```{r}
+```{r, comment = NA}
 
 options(width = 100)
 table(my_data$sow_parity, my_data$lsize)
@@ -73,7 +73,7 @@ table(my_data$sow_parity, my_data$lsize)
 Let's go back to the 2x2 table and quickly test do a chi-square test
 on the table:
 
-```{r}
+```{r, comment = NA}
 
 my_table <- table(my_data$herdtype, my_data$year)
 

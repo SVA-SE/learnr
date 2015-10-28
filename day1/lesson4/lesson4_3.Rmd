@@ -28,7 +28,7 @@ herd.
 options(width = 100)
 ```
 
-```{r}
+```{r, comment = NA}
 
 my_data <- read.table("herd_20_snippet.txt", header = TRUE)
 
@@ -37,7 +37,7 @@ my_data <- read.table("herd_20_snippet.txt", header = TRUE)
 Now let's select just one of the variables in the dataset and ask to
 see it
 
-```{r}
+```{r, comment = NA}
 
 my_data$lsize
 
@@ -59,7 +59,7 @@ order called their 'index'. When you do this you no longer use the
 data frame. Inside these brackets you put the indexes of the rows and
 columns that you want back from the data frame separated by a comma.
 
-```{r}
+```{r, comment = NA}
 
 ## mydata[row, column]
 my_data[1,1]
@@ -73,7 +73,7 @@ your data and check the value of the first row, first column.
 If you leave one of the two indexes blank R interprets this as wanted
 all of the values. Therefore, if you were to do the following
 
-```{r, width = 100}
+```{r, comment = NA, width = 100}
 
 my_data[,]
 
@@ -82,7 +82,7 @@ my_data[,]
 R returns to you the entire data frame. If we use this principle, we
 can ask for an entire row or entire column in the dataframe
 
-```{r}
+```{r, comment = NA}
 
 ## the first row
 my_data[1,]
@@ -96,7 +96,7 @@ You can also supply a series of numbers, which in R is called a
 'vector', to the index in order to retrieve several columns or rows at
 a time. For example the first 3 rows:
 
-```{r}
+```{r, comment = NA}
 
 ## generate a vector of 1 to 3
 a <- c(1,2,3)
@@ -117,7 +117,7 @@ frame. We can also subset a dataset with a vector of TRUES and FALSES
 that has the same length as the number of rows or columns in the
 dataset. The data frame that we are working with has 9 rows.
 
-```{r}
+```{r, comment = NA}
 
 
 ## generate a vector of 3 TRUES and 6 FALSES (Because we have 9 rows)
@@ -144,7 +144,7 @@ we want to examine only the litters that have preweaning mortality. We
 have the variable 'lmort' so we can use that to determine the
 indexes of the rows of the data frame that we want.
 
-```{r}
+```{r, comment = NA}
 
 ## Create the indexing vector
 
@@ -170,7 +170,7 @@ Let's read in the larger dataset that we worked with before for
 all the farms and try to use the subsetting principles to do something
 practical:
 
-```{r}
+```{r, comment = NA}
 
 my_data <- read.csv("prewmort.csv")
 
@@ -179,7 +179,7 @@ my_data <- read.csv("prewmort.csv")
 Now we'll create a cross-tabulation of sow_parity and preweaning
 mortality for just 1990.
 
-```{r}
+```{r, comment = NA}
 
 ## Generate a new dataset with just row where the year is 1990
 

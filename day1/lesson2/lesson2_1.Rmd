@@ -25,7 +25,7 @@ you just specify the new dataset name (my_data) and the file that you
 want to read from. The default in the read.csv function is that the
 first row in your .csv file contains the names of the variables.
 
-```{r}
+```{r, comment = NA}
 
 my_data <- read.csv("prewmort.csv")
 
@@ -40,7 +40,7 @@ When you read data from tab delimed form, you use a similar format to
 .csv but now you must specify that the first row of your text file
 contains the names of the variables by adding the argument 'header = TRUE'
 
-```{r}
+```{r, comment = NA}
 
 my_data <- read.table("prewmort.txt", header = TRUE)
 
@@ -67,7 +67,7 @@ data you need to specify the name of the file and index number of the
 worksheet. In the example below we will load the first worksheet in
 the 'prewmort.xlsx' workbook.
 
-```{r}
+```{r, comment = NA}
 
 ## Use the readxl library
 library(readxl)
@@ -86,7 +86,7 @@ the name of the dataset in the environment tab in the top-right panel
 of the editor
 
 
-```{r, eval = FALSE}
+```{r, comment = NA, eval = FALSE}
 
 View(my_data)
 ```
@@ -96,7 +96,7 @@ View(my_data)
 Data that has been saved in STATA can be read into R using the
 following function:
 
-```{r}
+```{r, comment = NA}
 
 ## Use the foreign library
 library(foreign)

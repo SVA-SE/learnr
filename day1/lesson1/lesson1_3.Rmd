@@ -28,7 +28,7 @@ variable(dataset\_name$variable\_name).
 
 ## The R script
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 ## Here is a simple example of an .R file that is used in R.
 ## Note that comments in the file are on line  that begin with a hash (#)
 

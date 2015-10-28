@@ -11,6 +11,9 @@ output:
 
 ---
 
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 120)
+```
 # Merging
 
 Merging data is a very common task. In contrast to appending data
@@ -36,7 +39,7 @@ new values to the matched locations, called indexes.
 
 First we will read in and have a look at the datasets:
 
-```{r}
+```{r, comment = NA}
 
 prewmort <- read.csv("prewmort.csv")
 
@@ -45,3 +48,81 @@ herd_level <- read.csv("farm_level.csv")
 herd_level
 
 ```
+
+You can see that we have a number of variables in the dataset that we
+might like in our litter level dataset. We will merge the
+`nsow`variable which is the number of sows in the farm; and the
+`coli_vac` variable which is whether or not the herd uses an *E. coli*
+vaccine. Lets explore the `match` function on something a little
+smaller before we use it to match the `herd` variable between the two
+datasets above.
+
+Here is a vector (A vector is a sequence of something like a variable
+in a dataframe) of words.
+
+```{r, comment = NA}
+
+cattle <- c("Angus", "Hereford", "Holstein", "Charolais", "Shorthorn", "Jersey")
+
+my_cows <- c("Hereford", "Shorthorn")
+
+match(my_cows, cattle)
+```
+
+The match function gives the indexes of the first argument in the
+second. So you get 2 because "Hereford" (The first element of the
+`my_cows` vector) is the second element in the `cattle` vector and 5
+because "Shorthorn"(The second element of the `my_cows` vector) is the
+5^th^ element in the `cattle` vector
+
+Lets flip the arguments and see what we get back:
+
+```{r, comment = NA}
+
+match(cattle, my_cows)
+
+```
+
+Now look at the elements of the `cattle` vector.
+
+* The first ("Angus") is not in the `my_cows` vector and so you get
+  `NA`
+* The second ("Hereford") is in position 1 of the `my_cows` vector so
+  you get 1
+* The third and fourth ("Holstein" and "Charolais") are not in the
+  `my_cows` vector so you get `NA NA`
+* The fifth ("Shorthorn") is in position 2 of the `my_cows` vector so
+  you a 2
+* The sixth ("Jersey") is not in the `my_cows` vector so you get `NA`
+
+The indices of the matches are the map that you will use to merge your
+data. Let's try matching the `herd` variable in the `prewmort`
+dataframe to the `herd` variable in the `herd_level` dataset. The
+logic here is that we want to know the index in the herd level data
+for each litter in the litter level dataset.
+
+```{r, comment = NA}
+
+index <- match(prewmort$herd, herd_level$herd)
+
+head(index)
+```
+
+Now we generate a new variable in the `prewmort` with the ecoli
+vaccination of the herd from the herd_level dataset
+
+```{r, comment = NA}
+
+prewmort$vaccine <- herd_level$coli_vac[index]
+head(prewmort)
+
+```
+
+## Now you try
+
+Create a new variable in the `prewmort` dataset for the number of sows in the farm. The data you need is in a file named "herd_size.csv".
+
+1. Read in the "herd_size.csv" file
+2. generate an index by matching
+3. Create a new variable and use you index to get the correct values where they belong
+
