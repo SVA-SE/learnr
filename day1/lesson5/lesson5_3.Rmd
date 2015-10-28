@@ -13,3 +13,35 @@ output:
 
 # Merging
 
+Merging data is a very common task. In contrast to appending data
+where all of the variables are the same, when you merge data only one
+of the variables in the two datasets needs to be the same
+variable. This variable is called the 'key' and is means of
+identifying observations in the dataset. This 'key' may be unique like
+an animal identifier or may identify groups like a herd identifier. In
+the preweaning mortality dataset that we have been working with there
+is no single variable that uniquely identifies a single observation
+because sows can be in the dataset more then once over several
+parities. In this dataset the 'key' the individual observations at the
+litter level would be a combination of `sowid` and `litter`.
+
+The example that we will work on will be adding a new variable that we
+have in another dataset that was recorded at the herd level. You might
+have information about management factors, herd size, location
+recorded at that level and you wish to merge it to your litter level
+information in order to complete a multi-level analysis.
+
+To merge data is a 2 step process of matching and then applying the
+new values to the matched locations, called indexes.
+
+First we will read in and have a look at the datasets:
+
+```{r}
+
+prewmort <- read.csv("prewmort.csv")
+
+herd_level <- read.csv("farm_level.csv")
+
+herd_level
+
+```
