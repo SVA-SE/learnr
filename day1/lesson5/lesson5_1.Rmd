@@ -13,6 +13,10 @@ output:
 
 # Generating new variables
 
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 100)
+```
+
 ```{r}
 # Read data from file 'herd_20.txt'
 herd_20 <- read.table("herd_20.txt", header = TRUE)
@@ -26,8 +30,13 @@ head(herd_20)
 # View the structure of the dataset
 str(herd_20)
 ```
+And of course you can use
 
-Lets add a column with the name of the herd manager
+```{r, eval = FALSE}
+View(herd_20)
+```
+
+Let's add a column with the name of the herd manager
 
 ```{r}
 herd_20$manager <- "Alice"
@@ -38,3 +47,80 @@ str(herd_20)
 # View the first six rows of the dataset
 head(herd_20)
 ```
+
+You will notice that the herd manager value "Alice" has been added to all of
+the rows of the dataframe in the column named `manager`
+
+The variable that we added now was only one value and the same value
+for all rows in the dataframe. Perhaps we need to generate a new
+variable based on the values of the other variables in the dataframe.
+
+Often when you are modeling you need to generate a squared term of a
+variable to test its effect on an outcome. Let's generate a new
+variable that is the square of litter size `lsize`
+
+```{r}
+
+herd_20$lsize_sq <- herd_20$lsize ^ 2
+
+```
+
+And then have a look at just a small piece of the dataframe to confirm
+that what we did makes sense
+
+```{r}
+
+head(herd_20[,c("herd", "lsize", "lsize_sq")])
+
+```
+
+Suppose we want to create a new variable based on the value of two
+other variables. We'll generate the percent preweaning mortality for
+this farm
+
+```{r}
+
+herd_20$percent_mort <- herd_20$dead / herd_20$lsize
+
+```
+
+Then have a look at a little piece of the dataframe to make sure what
+we did make sense
+
+```{r}
+
+head(herd_20[,c("herd", "dead", "lsize", "percent_mort")])
+
+```
+
+It seems that we forgot to multiply by 100 to get the percent. We
+can do two things to fix this:
+
+* Multiply the preweaning mortality variable by 100 and replace it.
+* Recreate the preweaning mortality and replace the incorrect variable.
+
+We'll try both. First multiply the `percent_mort` variable by 100 and replace it
+
+```{r}
+
+herd_20$percent_mort <- herd_20$percent_mort * 100
+head(herd_20[,c("herd", "dead", "lsize", "percent_mort")])
+
+```
+
+Notice that it is OK to use a variable and replace it at the same
+time. But we could have also calculated the variable again from the
+`dead` and `lsize` variable:
+
+```{r}
+
+herd_20$percent_mort <- (herd_20$dead / herd_20$lsize) * 100
+
+```
+
+## Now you try
+
+Generate a new variable for the percent stillborn piglets per
+litter. Then round the result to one decimal place. To do the rounding
+use the `round` function, it takes two arguments, the variable and the
+number of decimal places.
