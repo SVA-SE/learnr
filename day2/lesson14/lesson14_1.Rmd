@@ -1,0 +1,14 @@
+---
+output:
+    html_document:
+        css: ../../style.css
+---
+
+[![Previous](../../img/previous.png)](../lesson13/lesson13_1.html)
+[![Index](../../img/home.png)](../../index.html)
+[![Next](../../img/next.png)](../lesson15/lesson15_1.html)
+[![Folder](../../img/folder.png)](./)
+
+---
+
+# Where to find resources for your next step in learning to use R

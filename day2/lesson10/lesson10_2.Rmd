@@ -1,0 +1,14 @@
+---
+output:
+    html_document:
+        css: ../../style.css
+---
+
+[![Previous](../../img/previous.png)](../../day2/lesson10/lesson10_1.html)
+[![Index](../../img/home.png)](../../index.html)
+[![Next](../../img/next.png)](../lesson11/lesson11_1.html)
+[![Folder](../../img/folder.png)](./)
+
+---
+
+# Demonstration of packages for veterinary epidemiology

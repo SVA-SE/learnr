@@ -1,3 +1,9 @@
+---
+output:
+    html_document:
+        css: ../../style.css
+---
+
 [![Previous](../../img/previous.png)](lesson8_2.html)
 [![Index](../../img/home.png)](../../index.html)
 [![Next](../../img/next.png)](../../day2/lesson9/lesson9_1.html)

@@ -1,0 +1,15 @@
+---
+output:
+    html_document:
+        css: ../../style.css
+---
+
+[![Previous](../../img/previous.png)](../../day2/lesson11/lesson11_1.html)
+[![Index](../../img/home.png)](../../index.html)
+[![Next](../../img/next.png)](../lesson13/lesson13_1.html)
+[![Folder](../../img/folder.png)](./)
+
+---
+
+
+# [ggplot2](http://docs.ggplot2.org/current/index.html)

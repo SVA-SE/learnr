@@ -1,6 +1,6 @@
 [![Previous](../../img/previous.png)](../../day1/lesson8/lesson8_1.html)
 [![Index](../../img/home.png)](../../index.html)
-[![Next](../../img/next.png)](../lesson19/lesson10_1.html)
+[![Next](../../img/next.png)](../lesson10/lesson10_1.html)
 [![Folder](../../img/folder.png)](./)
 
 ---

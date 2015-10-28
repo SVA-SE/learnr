@@ -4,12 +4,11 @@ output:
         css: ../../style.css
 ---
 
-[![Previous](../../img/previous.png)](lesson5_2.html)
+[![Previous](../../img/previous.png)](../../day2/lesson10/lesson10_1.html)
 [![Index](../../img/home.png)](../../index.html)
-[![Next](../../img/next.png)](../lesson6/lesson6_1.html)
+[![Next](../../img/next.png)](../lesson12/lesson12_1.html)
 [![Folder](../../img/folder.png)](./)
 
 ---
 
-# Merging
-
+# Install a package

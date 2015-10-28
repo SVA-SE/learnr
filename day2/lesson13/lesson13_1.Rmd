@@ -1,3 +1,9 @@
+---
+output:
+    html_document:
+        css: ../../style.css
+---
+
 [![Previous](../../img/previous.png)](../../day2/lesson12/lesson12_1.html)
 [![Index](../../img/home.png)](../../index.html)
 [![Next](../../img/next.png)](../lesson14/lesson14_1.html)
@@ -23,7 +29,7 @@ to do you data analysis. The markdown language is integrated with R
 with the `rmarkdown` package.
 
 The entire website that you are viewing right now was generated with
-`rmarkdown`, so each of the chucks of th webpages that are R code were
+`rmarkdown`, so each of the chunks of the webpage that are R code were
 run through the R software as the webpage was being built and the
 figures and results were inserted. If you look at
 [lesson6.1](../../day1/lesson6/lesson6_1.html) you can see under the

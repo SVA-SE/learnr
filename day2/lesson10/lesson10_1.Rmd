@@ -1,0 +1,14 @@
+---
+output:
+    html_document:
+        css: ../../style.css
+---
+
+[![Previous](../../img/previous.png)](../../day2/lesson9/lesson9_1.html)
+[![Index](../../img/home.png)](../../index.html)
+[![Next](../../img/next.png)](../lesson10/lesson10_2.html)
+[![Folder](../../img/folder.png)](./)
+
+---
+
+# How to find and use R extensions (packages)
