@@ -30,7 +30,40 @@ Lets start to explore the `for` loop before reading data.
 
 ```{r}
 for(i in 1:10) {
-    cat("Hello R! ")
+    cat("Hello R! ...")
 }
 ```
 
+The function `cat` spits out the characters in its argument to the
+R-console. So you should see that R has done this 10 times, once for
+each of the numbers (i) in the sequence from 1 to 10 which is what the
+`i in 1:10` means.
+
+In the above example we just do the same thing 10 times. You can also alter what you do each time it repeats by using the value of `i` inside the loop
+
+```{r}
+for(i in 1:10) {
+    cat(i)
+}
+```
+
+Here you can see that each time the loop iterates it returns the value
+of `i`. This sequence of i's doesn't have to be numbers it could just
+as well be our list of files.
+
+Let's use our list of files to read the group of datasets into R using a loop
+
+**\@Stefan: How are you planning to do this?**
+
+I'm afraid that it is going to be too complicated. I can't do it without an empty list that I fill and then I will use do.call "rbind" OR lapply.  
+
+Below is pseudocode:
+
+```{r, eval = FALSE}
+
+for(i in files) {
+    object_name with index <- read.csv(i)
+}
+```
+
+Maybe instead of splitting the file into 16 herds you can split into 3 datasets that we have to stick together?

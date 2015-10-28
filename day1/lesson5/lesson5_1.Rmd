@@ -14,7 +14,7 @@ output:
 # Generating new variables
 
 ```{r set-options, echo=FALSE, cache=FALSE}
-options(width = 100)
+options(width = 120)
 ```
 
 ```{r}
