@@ -18,3 +18,8 @@ http://adv-r.had.co.nz/
 http://www.revolutionanalytics.com/r-language-resources
 
 [R for Stata Users](http://link.springer.com/book/10.1007%2F978-1-4419-1318-0)
+
+[How to use Rstudio](http://dss.princeton.edu/training/RStudio101.pdf)
+
+[How to use R](http://www.cyclismo.org/tutorial/R/)
+
