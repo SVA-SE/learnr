@@ -1,0 +1,20 @@
+# Analysis of growth performance of pigs
+
+```{r, echo = FALSE, message = FALSE}
+
+library(ggplot2)
+pig_adg <- read.csv("pig_adg.csv")
+
+boxplot(pig_adg$dtm ~ pig_adg$ar,
+        ylab = "Days to market", col = "darkkhaki",
+        xlab = "Atrophic Rhinitis score")
+
+quantiles <- quantile(pig_adg$dtm, c(0, 0.05, 0.5, 0.95, 1))
+
+```
+
+## Results
+
+The number of days to market (DTM) of the pigs in the current study
+ranged from a minimum of `r quantiles["0%"]` to a maximum of
+`r quantiles["100%"]`, the median DTM was `r quantiles["50%"]` days

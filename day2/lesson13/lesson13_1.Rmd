@@ -123,10 +123,11 @@ done on the 'pig_adg' dataset.
 
 Start by creating a new .Rmd file with the following content:
 
-
+[Run this chunk](report1.html)
 <pre><code># Analysis of growth performance of pigs
 </code>
 <code>```{r}
+
 library(ggplot2)
 pig_adg <- read.csv("pig_adg.csv")
 
@@ -141,10 +142,11 @@ parts that we want to complete but not show the results of. In the
 example above, we want to see the title and the plot but not the code
 that was used to produce the plot. To hide this part we add an argument to the chunk inside the {brackets} and after the 'r' like this:
 
-
+[Run this chunk](report2.html)
 <pre><code># Analysis of growth performance of pigs
 </code>
-<code>```{r<font color="red"><b>, echo = FALSE</b></font>}
+<code>```{r<font color="red"><b>, echo = FALSE, message = FALSE</b></font>}
+
 library(ggplot2)
 pig_adg <- read.csv("pig_adg.csv")
 
@@ -152,3 +154,87 @@ boxplot(pig_adg$dtm ~ pig_adg$ar,
         ylab = "Days to market", col = "darkkhaki",
         xlab = "Atrophic Rhinitis score")
 ```</code></pre>
+
+You can use this strategy in a report to do you analysis in the
+background and just let the reader see your pretty figures. You may
+also want to extract numbers from your analysis that you want to use
+in paragraph text. You can do this by completing an analysis inside a
+chunk and then calling the result in 'inline' code. Like this:
+
+[Run this chunk](report3.html)
+<pre><code># Analysis of growth performance of pigs
+</code>
+<code>```{r, echo = FALSE, message = FALSE}</code>
+
+library(ggplot2)
+pig_adg <- read.csv("pig_adg.csv")
+
+boxplot(pig_adg$dtm ~ pig_adg$ar,
+        ylab = "Days to market", col = "darkkhaki",
+        xlab = "Atrophic Rhinitis score")</code>
+
+<code><font color="red"><b>quantiles <- quantile(pig_adg$dtm, c(0, 0.05, 0.5, 0.95, 1))</b></font>
+
+```</code>
+
+<code>## Results</code>
+
+<code>The number of days to market (DTM) of the pigs in the current study</code>
+<code>ranged from a minimum of <font color="red"><b><code>`r</code> <code>quantiles</code><code>["0%"]`</code></b></font> to a maximum of</code>
+<font color="red"><b><code><code>`r</code> <code>quantiles</code><code>["100%"]`</code></b></font>, the median DTM was <font color="red"><b><code>`r</code> <code>quantiles</code><code>["50%"]`</code></b></font> days</code>
+
+</pre>
+
+
+Now you can see the idea, that essentially any number or figure that
+you can get from R, you can include in an R-markdown report. To
+illustrate the principle that the individual chunks of R code in the
+report are connected, we'll add last feature of a table in another
+chunk that uses the data that we read into R in the first chunk:
+
+[Run this chunk](report4.html)
+<pre><code># Analysis of growth performance of pigs
+</code>
+<code>```{r, echo = FALSE, message = FALSE}</code>
+
+library(ggplot2)
+pig_adg <- read.csv("pig_adg.csv")
+
+boxplot(pig_adg$dtm ~ pig_adg$ar,
+        ylab = "Days to market", col = "darkkhaki",
+        xlab = "Atrophic Rhinitis score")</code>
+
+<code>quantiles <- quantile(pig_adg$dtm, c(0, 0.05, 0.5, 0.95, 1))
+
+```</code>
+
+<code>## Results</code>
+
+<code>The number of days to market (DTM) of the pigs in the current study</code>
+<code>ranged from a minimum of <code>`r</code> <code>quantiles</code><code>["0%"]`</code> to a maximum of</code>
+<code><code>`r</code> <code>quantiles</code><code>["100%"]`</code>, the median DTM was <code>`r</code> <code>quantiles</code><code>["50%"]`</code> days</code>
+
+<font color="red"><b>
+<code>```{r, echo = FALSE, message = FALSE}</code>
+
+<code>library(DT)
+
+datatable(pig_adg[,c("farm","dtm", "ar")], options = list(pageLength = 10))
+
+```</code>
+</b></font>
+</pre>
+
+
+So here we used the object `pig_adg` in the second chunk without having to read it back in.
+
+
+## Now you try
+
+Create you own report on an summary of the "pig_adg.csv" dataset. You
+can copy the code from the last example into a .Rmd file or start
+again from nothing if you like.
+
+* Try adding some paragraph text in between the chunks of R code.
+* Add another figure to the report, you decide what you would like
+* Add some inline code

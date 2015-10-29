@@ -62,7 +62,7 @@ output:
 
 * 9 [How to find and read R documentation](day2/lesson9/lesson9_1.html)
 * 10 R Extensions
-    * 10.1 [How to find and use R extensions \(packages\)](day2/lesson10/lesson10_1.html)
+    * 10.1 [How to find and use R extensions (packages)](day2/lesson10/lesson10_1.html)
     * 10.2 [Demonstration of packages for veterinary epidemiology](day2/lesson10/lesson10_2.html)
 * 11 [Install a package](day2/lesson11/lesson11_1.html)
 

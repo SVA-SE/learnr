@@ -1,0 +1,11 @@
+# Analysis of growth performance of pigs
+
+```{r, echo = FALSE, message = FALSE}
+
+library(ggplot2)
+pig_adg <- read.csv("pig_adg.csv")
+
+boxplot(pig_adg$dtm ~ pig_adg$ar,
+        ylab = "Days to market", col = "darkkhaki",
+        xlab = "Atrophic Rhinitis score")
+```

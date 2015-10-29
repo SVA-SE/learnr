@@ -1,3 +1,9 @@
+---
+output:
+    html_document:
+        css: ../../style.css
+---
+
 [![Previous](../../img/previous.png)](../../day1/lesson8/lesson8_1.html)
 [![Index](../../img/home.png)](../../index.html)
 [![Next](../../img/next.png)](../lesson10/lesson10_1.html)
@@ -67,25 +73,18 @@ in the R console
 
 1. Determine the mean value of the a vector below
 
-```{r}
+```{r, comment = NA}
 
 a <- c(2,4,8,3,5,4,1,3,8,NA,9,5,6,8,4,2,6,4,7,3,NA,5,6,7,8,3,9,1,12,14,100,0,NA)
 
 ```
 
-2. Install the library `DT`, browse the documentation of the
-`datatable`, look at the vignette. Then read in the dataset
-"pigs_adg.csv" and make an html table of the entire dataframe using
-the `datatable` function in that package.
+2. Explore the `seq` and `rep` functions
 
-It should look like this:
+    a. Use the `seq` function to generate a sequence of numbers from 1 to 20
+	b. Use the `seq` function to generate a sequence of even numbers from 2 to 20
+	c. Use the `rep` function to repeat the number 5, ten times
+	d. Use the `rep` function to generate a sequence of alternating ones and twos with a length of 10
+	e. Use the `seq` function to make a sequence from 0 to 1 with steps of size 0.01
+		* Investigate if there are multiple ways to solve any of these
 
-----
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
-library(DT)
-pig_adg<- read.csv("pig_adg.csv")
-
-datatable(pig_adg)
-
-```
