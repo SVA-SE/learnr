@@ -12,3 +12,12 @@ output:
 ---
 
 # Where to find resources for your next step in learning to use R
+
+
+
+
+
+
+[How to use Rstudio](http://dss.princeton.edu/training/RStudio101.pdf)
+
+[How to use R](http://www.cyclismo.org/tutorial/R/)
