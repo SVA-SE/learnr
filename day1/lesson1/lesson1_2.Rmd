@@ -89,3 +89,13 @@ somewhere. Click the save button in the script frame:
 
 Then select the place you want to save your script. You can now load
 this script and evaluate it at a later time.
+
+## Other Tutorials
+
+### A tutorial about R-studio
+
+http://dss.princeton.edu/training/RStudio101.pdf
+
+### A tutorial about the use of R itself
+
+http://www.cyclismo.org/tutorial/R/
