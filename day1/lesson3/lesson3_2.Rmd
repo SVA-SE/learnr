@@ -11,11 +11,87 @@ output:
 
 ---
 
-# Data structures in R
+# What types of data can you store in a data.frame
 
-----
+As we mentioned in the previous lesson a data.frame is a collection of
+different variables. These variables are called "vectors" in R and a
+data.frame is a `list` of vectors that each has a name. The data.frame
+allows you to store:
 
-## What types of data can you store in a data.frame
+* Numbers:
 
-yada yada yada
+```{r, comment = NA}
+
+c(1,2,3,4)
+
+```
+
+* Characters:
+
+
+```{r, comment = NA}
+
+c("apples", "oranges", "bananas", "kiwi")
+
+```
+
+* Logical:
+
+```{r, comment = NA}
+
+c(TRUE, FALSE, FALSE, TRUE)
+
+```
+
+* A Categorical variable called a Factor
+
+```{r, comment = NA}
+
+factor(c("apples", "oranges", "bananas", "kiwi"))
+
+```
+
+The previous data.frames that we read contained only numeric
+values. Let's read in a .csv file that has both numeric and character
+values.
+
+```{r, comment = NA}
+
+fruits <- read.csv("fruits.csv")
+
+fruits
+
+str(fruits)
+
+```
+
+You notice that we have two different data types here. `n` is a 'int'
+which is short for integer and is one of the numeric datatypes in
+R. `fruit` is a factor. R converted the character string in the csv
+file to a factor as it was imported. If you don' want that then do
+this:
+
+```{r, comment = NA}
+
+fruits <- read.csv("fruits.csv", stringsAsFactors = FALSE)
+
+str(fruits)
+
+```
+
+Now we have a numeric and a 'chr' short for character. We can create a
+logical variable as well. We will come back to the details of how to
+create new variables in a data.frame in a later lesson.
+
+
+```{r, comment = NA}
+
+fruits$delicious <- c(FALSE, TRUE, TRUE, FALSE)
+
+fruits
+str(fruits)
+```
+
+So now we can see which fruits that I prefer and the other data type 'logi' which is short for logical.
+
 
