@@ -25,7 +25,7 @@ plotting with `ggplot2` in a later lesson.
 
 Let's look at a few examples of base plotting.
 
-```{r}
+```{r, comment = NA}
 ## Read in some data and clean it up:
 pig_adg<- read.csv("pig_adg.csv")
 pig_adg$ar_g1 <- NA
@@ -39,7 +39,7 @@ pig_adg$sex <- factor(pig_adg$sex, levels = c(0,1), labels = c("female", "male")
 
 See what happens if you plot two variables in the dataframe:
 
-```{r}
+```{r, comment = NA}
 plot(x = pig_adg$adg, y = pig_adg$dtm)
 ```
 
@@ -47,7 +47,7 @@ You get a scatter plot with the labels on the axis equal to the
 variable names. One of the default arguments that you do not see above is
 `type = "point"`. Let's try `type = "line"`
 
-```{r}
+```{r, comment = NA}
 
 plot(x = pig_adg$adg, y = pig_adg$dtm, type = "line")
 ```
@@ -55,7 +55,7 @@ plot(x = pig_adg$adg, y = pig_adg$dtm, type = "line")
 That didn't make much sense. We should probably sort the data by the
 x- variable first
 
-```{r}
+```{r, comment = NA}
 
 df <- pig_adg[order(pig_adg$adg),]
 plot(x = df$adg, y = df$dtm, type = "line")
@@ -64,7 +64,7 @@ plot(x = df$adg, y = df$dtm, type = "line")
 
 We could also plot a model
 
-```{r}
+```{r, comment = NA}
 
 plot(lm(formula = dtm ~ adg, data = pig_adg))
 
@@ -88,7 +88,7 @@ plots.
 # Scatter plot
 
 Above you already saw the scatter plot.
-```{r}
+```{r, comment = NA}
 
 plot(x = pig_adg$adg, y = pig_adg$dtm,
      type = "point", pch = 20
@@ -118,7 +118,7 @@ the available
 [text names](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) or
 a colour in [hexadecimal format](http://www.w3schools.com/tags/ref_colorpicker.asp).
 
-```{r}
+```{r, comment = NA}
 
 plot(x = pig_adg$adg, y = pig_adg$dtm,
      type = "point", pch = 20, col = "red"
@@ -128,7 +128,7 @@ plot(x = pig_adg$adg, y = pig_adg$dtm,
 
 We can change the axis titles.
 
-```{r}
+```{r, comment = NA}
 
 plot(x = pig_adg$adg, y = pig_adg$dtm,
      type = "point", pch = 20, col = "#E60000",
@@ -144,7 +144,7 @@ the axis. We start by generating a plot without tick marks and then
 adding them with the axis function and defining the label orientation
 as well.
 
-```{r}
+```{r, comment = NA}
 
 plot(x = pig_adg$adg, y = pig_adg$dtm,
      type = "point", pch = 20, col = "#E60000",
@@ -173,7 +173,7 @@ doesn't really lend itself well to plotting the current dataset. We
 most often use it to plot a prediction, or a smoothed model or our
 data to lets quickly generate that so we have some data to work with.
 
-```{r}
+```{r, comment = NA}
 
 model <- lm(formula = dtm ~ adg, data = pig_adg)
 predict_data <- data.frame("adg" = seq(min(pig_adg$adg), max(pig_adg$adg)))
@@ -183,7 +183,7 @@ predict_data$prediction_dtm <- predict(model, predict_data)
 ```
 So now we have a dataset and can plot a line
 
-```{r}
+```{r, comment = NA}
 plot(x = predict_data$adg, y = predict_data$prediction_dtm,
      type = "line", lwd = 2, col = "red",
      xlab = "Average daily gain (grams)",
@@ -200,7 +200,7 @@ You may wish to plot the prediction from you model ontop of the
 scattered points. You do this by first plotting the points and then
 overlaying the line.
 
-```{r}
+```{r, comment = NA}
 
 plot(x    = pig_adg$adg,
      y    = pig_adg$dtm,
@@ -229,14 +229,14 @@ summarize our dataframe into some categories of observations that are
 counted. We'll use the table function to generate a cross tabulation
 of the data across 1 or 2 variables.
 
-```{r}
+```{r, comment = NA}
 counts <- table(pig_adg$ar)
 counts
 ```
 
 Now use the `barplot` function to generate a plot
 
-```{r}
+```{r, comment = NA}
 
 barplot(counts,
         xlab = "Atrophic rhinitis score",
@@ -244,14 +244,14 @@ barplot(counts,
 
 ```
 
-```{r}
+```{r, comment = NA}
 counts <- table(pig_adg$pn, pig_adg$ar)
 counts
 ```
 
 Now use the `barplot` function to generate a plot
 
-```{r}
+```{r, comment = NA}
 
 barplot(counts,
         xlab = "Atrophic rhinitis score",
@@ -263,7 +263,7 @@ barplot(counts,
 Maybe, (like me) you hate stacked bar plots so you want a side-by-side
 plot instead.
 
-```{r}
+```{r, comment = NA}
 
 barplot(counts,
         xlab = "Atrophic rhinitis score",
@@ -274,7 +274,7 @@ barplot(counts,
 
 And you want some colour:
 
-```{r}
+```{r, comment = NA}
 
 barplot(counts,
         xlab   = "Atrophic rhinitis score",
@@ -292,7 +292,7 @@ The box plot and parallel box plot lends itself well to summarizing
 continuous data over categories. So we can look at 1 variable or 2.
 
 
-```{r}
+```{r, comment = NA}
 
 boxplot(pig_adg$dtm,
         ylab = "Days to market", col = "darkkhaki")
@@ -301,7 +301,7 @@ boxplot(pig_adg$dtm,
 
 And over the atrophic rhinitis score
 
-```{r}
+```{r, comment = NA}
 
 boxplot(pig_adg$dtm ~ pig_adg$ar,
         ylab = "Days to market", col = "darkkhaki",
@@ -324,7 +324,7 @@ gain on the x-axis. Plot two separate lines, one for males and one for females
 
 We'll generate linear model and predictions first, then you do the graph:
 
-```{r}
+```{r, comment = NA}
 
 model <- lm(formula = dtm ~ adg + sex, data = pig_adg)
 predict_data <- data.frame(

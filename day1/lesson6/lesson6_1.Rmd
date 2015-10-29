@@ -19,7 +19,7 @@ discrete data' (Pages 579-606) in the 2nd edition of the
 textbook. If you have the first edition of the same book the examples
 are almost the same and are on pages 499-520.
 
-```{r}
+```{r, comment = NA}
 pig_adg<- read.csv("pig_adg.csv")
 
 ```
@@ -36,7 +36,7 @@ absence or pneumonia in the pig. We just need to generate the `ar_g1`
 variable that is presence of atrophic rhinitis with a score greater
 than 1.
 
-```{r}
+```{r, comment = NA}
 pig_adg$ar_g1 <- NA
 pig_adg$ar_g1[pig_adg$ar > 1] <- 1
 pig_adg$ar_g1[pig_adg$ar <= 1] <- 0
@@ -45,7 +45,7 @@ pig_adg$ar_g1[pig_adg$ar <= 1] <- 0
 Then we can be neat and tidy and label the categorical variables that
 we are going to use
 
-```{r}
+```{r, comment = NA}
 pig_adg$ar_g1 <- factor(pig_adg$ar_g1, levels = c(0,1), labels = c("no atrophic", "yes atrophic"))
 
 pig_adg$pn <- factor(pig_adg$pn, levels = c(0,1), labels = c("no pneumonia", "mild-severe pneumonia"))
@@ -54,7 +54,7 @@ pig_adg$pn <- factor(pig_adg$pn, levels = c(0,1), labels = c("no pneumonia", "mi
 
 Now we can do the cross-tabulation that they did
 
-```{r}
+```{r, comment = NA}
 table(pig_adg$pn, pig_adg$ar_g1)
 
 ```
@@ -136,7 +136,7 @@ Now we will look at how to determine model fit by inspecting residuals
 from a logistic model. First we will make the model more interesting
 by adding another variable.
 
-```{r}
+```{r, comment = NA}
 
 model3 <- glmer(pn ~ ar_g1 + dtm  + (1 | farm), data = pig_adg, family = binomial)
 
@@ -147,14 +147,14 @@ a variable in the model. If we want to do that, then we don't have to
 generate a new dummy variable in the data frame (Although you could do
 that too), can use a log function in the model call as follows:
 
-```{r}
+```{r, comment = NA}
 
 model4 <- glmer(pn ~ ar_g1 + log(dtm)  + (1 | farm), data = pig_adg, family = binomial)
 
 ```
 or with the dummy variable:
 
-```{r}
+```{r, comment = NA}
 
 pig_adg$log_dtm <- log(pig_adg$dtm)
 
@@ -177,7 +177,7 @@ order to predict the outcomes for all levels
 
 ## Predictions from regression
 
-```{r}
+```{r, comment = NA}
 
 adg_predict <- expand.grid(ar_g1 = levels(pig_adg$ar_g1),
                            dtm   = seq(min(pig_adg$dtm), max(pig_adg$dtm)),
@@ -187,7 +187,7 @@ adg_predict$log_dtm <- log(adg_predict$dtm)
 ```
 
 Have a look at the first few lines of this prediction dataframe
-```{r}
+```{r, comment = NA}
 head(adg_predict)
 ```
 
@@ -196,7 +196,7 @@ Make the predictions based on the `model5` model. In this case the
 prediction in the `adg_predict` dataframe to calculate the predicted
 log odds because the was the name of the variable when the model was specified.
 
-```{r}
+```{r, comment = NA}
 
 adg_predict$pred_model5 <- predict(model5, adg_predict)
 
@@ -207,7 +207,7 @@ and internally the predictions will be calculated based on the `dtm`
 variable and the `log` operation on the `dtm` value will be done by
 the model.
 
-```{r}
+```{r, comment = NA}
 
 adg_predict$pred_model4 <- predict(model4, adg_predict)
 
@@ -216,7 +216,7 @@ adg_predict$pred_model4 <- predict(model4, adg_predict)
 Have a look at the first few rows of the prediction dataframe
 `adg_predict`
 
-```{r}
+```{r, comment = NA}
 
 head(adg_predict)
 
@@ -228,7 +228,7 @@ First we can plot the predictions with one line for each random
 intercept (each farm) and the lines coloured by the atrophic rhinitis
 variable.
 
-```{r}
+```{r, message = FALSE}
 library(ggplot2)
 
 ggplot(adg_predict, aes(x = dtm, y = pred_model4, group = interaction(ar_g1, farm), colour = ar_g1)) +
@@ -244,7 +244,7 @@ an average farm. The shape of the model is the same for all farms
 because we have no interactions with farm. Start by calculating the
 mean predictions for each `dtm` and `ar_g1` level across farms:
 
-```{r}
+```{r, comment = NA}
 
 library(plyr)
 prediction2 <- ddply(.data = adg_predict, .variables = c("dtm", "ar_g1"), .fun = function(x){mean(x$pred_model4)})
@@ -254,7 +254,7 @@ head(prediction2)
 
 And plot this:
 
-```{r}
+```{r, comment = NA}
 ggplot(prediction2, aes(x = dtm, y = V1, group = ar_g1, colour = ar_g1)) +
     geom_line()
 
@@ -263,7 +263,7 @@ ggplot(prediction2, aes(x = dtm, y = V1, group = ar_g1, colour = ar_g1)) +
 Maybe we want to view the predictions as predicted probability instead
 of on the log odds scale
 
-```{r}
+```{r, comment = NA}
 prediction2$prob <- exp(prediction2$V1)/(1+exp(prediction2$V1))
 
 ggplot(prediction2, aes(x = dtm, y = prob, group = ar_g1, colour = ar_g1)) +

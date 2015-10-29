@@ -17,7 +17,7 @@ output:
 frames as interactive HTML tables that support filtering, pagination,
 and sorting.
 
-```{r}
+```{r, comment = NA}
 library(DT)
 
 my_data <- read.csv("prewmort.csv")
