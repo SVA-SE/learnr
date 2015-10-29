@@ -17,7 +17,7 @@ output:
 options(width = 120)
 ```
 
-```{r}
+```{r, comment = NA}
 # Read data from file 'herd_20.txt'
 herd_20 <- read.table("herd_20.txt", header = TRUE)
 
@@ -38,7 +38,7 @@ View(herd_20)
 
 Let's add a column with the name of the herd manager
 
-```{r}
+```{r, comment = NA}
 herd_20$manager <- "Alice"
 
 # View the structure of the dataset again
@@ -59,7 +59,7 @@ Often when you are modeling you need to generate a squared term of a
 variable to test its effect on an outcome. Let's generate a new
 variable that is the square of litter size `lsize`
 
-```{r}
+```{r, comment = NA}
 
 herd_20$lsize_sq <- herd_20$lsize ^ 2
 
@@ -68,7 +68,7 @@ herd_20$lsize_sq <- herd_20$lsize ^ 2
 And then have a look at just a small piece of the dataframe to confirm
 that what we did makes sense
 
-```{r}
+```{r, comment = NA}
 
 head(herd_20[,c("herd", "lsize", "lsize_sq")])
 
@@ -78,7 +78,7 @@ Suppose we want to create a new variable based on the value of two
 other variables. We'll generate the percent preweaning mortality for
 this farm
 
-```{r}
+```{r, comment = NA}
 
 herd_20$percent_mort <- herd_20$dead / herd_20$lsize
 
@@ -87,7 +87,7 @@ herd_20$percent_mort <- herd_20$dead / herd_20$lsize
 Then have a look at a little piece of the dataframe to make sure what
 we did make sense
 
-```{r}
+```{r, comment = NA}
 
 head(herd_20[,c("herd", "dead", "lsize", "percent_mort")])
 
@@ -101,7 +101,7 @@ can do two things to fix this:
 
 We'll try both. First multiply the `percent_mort` variable by 100 and replace it
 
-```{r}
+```{r, comment = NA}
 
 herd_20$percent_mort <- herd_20$percent_mort * 100
 head(herd_20[,c("herd", "dead", "lsize", "percent_mort")])
@@ -112,7 +112,7 @@ Notice that it is OK to use a variable and replace it at the same
 time. But we could have also calculated the variable again from the
 `dead` and `lsize` variable:
 
-```{r}
+```{r, comment = NA}
 
 herd_20$percent_mort <- (herd_20$dead / herd_20$lsize) * 100
 

@@ -99,7 +99,6 @@ as well be our list of files.
 Let's use our list of files `files` to read the group of datasets into R using a loop
 
 
-
 ```{r, comment = NA}
 
 farms <- read.table(files[1], header = TRUE)
