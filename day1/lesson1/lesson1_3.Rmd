@@ -26,6 +26,9 @@ want to do something to a variable in a dataset you need to refer to
 the dataset name and the name of the
 variable(dataset\_name$variable\_name).
 
+If you are a Stata user, maybe this book could be useful for you
+[R for Stata Users](http://link.springer.com/book/10.1007%2F978-1-4419-1318-0).
+
 ## The R script
 
 ```{r, eval=FALSE}
