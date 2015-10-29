@@ -11,25 +11,38 @@ output:
 
 ---
 
-# Data structures in R
-
-This lesson will teach you
-
-* What is a dataframe?
-* What types of data can you store?
-
-----
-
-## What is a data.frame
+# What is a data.frame
 
 The primary data structure of **R** is the
 [data.frame](https://stat.ethz.ch/R-manual/R-patched/library/base/html/data.frame.html). A
 `data.frame` is a table like data structure, compare with a Worksheet
 in Excel. Each row contains values for each column. An important
 feature of a table is that each column can have a different data type,
-*e.g.* character, logical integer:
+*e.g.* character, logical or integer:
+
+\
 
 ![Worksheet](worksheet.png)
 
-**Demonstrate how to read data from tools menu**
+\
+---
+\
 
+In the previous lesson we used various `read` methods to demonstrate
+how to read data into R. However, it is also possible to use use the
+*Import Daset* dialog under the RStudio *tools menu*.
+
+\
+
+![Worksheet](import-dataset-menu.png)
+
+\
+---
+\
+
+The dialog allows you to select options to describe the format of the
+dataset.
+
+\
+
+![Worksheet](import-dataset.png)
