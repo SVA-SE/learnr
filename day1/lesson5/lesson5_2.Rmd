@@ -11,7 +11,50 @@ output:
 
 ---
 
+```{r, comment = NA, echo = FALSE}
+
+options(width = 100)
+
+```
 # Append data to a data.frame
+
+This is the action of sticking more rows to an existing
+data.frame. The variables of the data.frames should be the same. We
+have a list of 16 different tab delimited  files; one for each of 16 farms where
+the same information was recorded for each farm.
+
+Let's read in 'herd\_20.txt' and 'herd\_21.txt' and append one to the other.
+
+
+```{r, comment = NA}
+
+herd_20 <- read.table("herd_20.txt", header = TRUE)
+
+herd_21 <- read.table("herd_21.txt", header = TRUE)
+
+head(herd_20)
+head(herd_21)
+
+```
+
+You can see that we now have two dataframes with the same columns but
+different rows that we should append to one another.
+
+To append them we use the function `rbind`
+
+```{r, comment = NA}
+
+herds <- rbind(herd_20, herd_21)
+
+```
+
+You can use the `nrow` function to convince yourself that the herds
+data.frame has the sum of the number of rows of the `herd_20` and
+`herd_21` data.frames.
+
+The `rbind` function matches the column names of the dataframes that
+are input so you don't actually have to have the same order of the
+variables as we did in the example above.
 
 To combine the 16 data files in this lesson, we will introduce the
 [for-loop](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Loops-and-conditional-execution). Using
@@ -19,7 +62,7 @@ the `for`, we can read one file at a time and append to the result. If
 you browse the folder for this lesson, you should find the following
 16 files.
 
-```{r}
+```{r, comment = NA}
 files <- c("herd_20.txt", "herd_21.txt", "herd_22.txt", "herd_23.txt",
            "herd_24.txt", "herd_25.txt", "herd_26.txt", "herd_27.txt",
            "herd_28.txt", "herd_30.txt", "herd_31.txt", "herd_33.txt",
@@ -28,7 +71,7 @@ files <- c("herd_20.txt", "herd_21.txt", "herd_22.txt", "herd_23.txt",
 
 Lets start to explore the `for` loop before reading data.
 
-```{r}
+```{r, comment = NA}
 for(i in 1:10) {
     cat("Hello R! ...")
 }
@@ -39,9 +82,11 @@ R-console. So you should see that R has done this 10 times, once for
 each of the numbers (i) in the sequence from 1 to 10 which is what the
 `i in 1:10` means.
 
-In the above example we just do the same thing 10 times. You can also alter what you do each time it repeats by using the value of `i` inside the loop
+In the above example we just do the same thing 10 times. You can also
+alter what you do each time it repeats by using the value of `i`
+inside the loop
 
-```{r}
+```{r, comment = NA}
 for(i in 1:10) {
     cat(i)
 }
@@ -51,19 +96,42 @@ Here you can see that each time the loop iterates it returns the value
 of `i`. This sequence of i's doesn't have to be numbers it could just
 as well be our list of files.
 
-Let's use our list of files to read the group of datasets into R using a loop
+Let's use our list of files `files` to read the group of datasets into R using a loop
 
-**\@Stefan: How are you planning to do this?**
 
-I'm afraid that it is going to be too complicated. I can't do it without an empty list that I fill and then I will use do.call "rbind" OR lapply.  
 
-Below is pseudocode:
+```{r, comment = NA}
 
-```{r, eval = FALSE}
+farms <- read.table(files[1], header = TRUE)
 
-for(i in files) {
-    object_name with index <- read.csv(i)
+for(i in 2:length(files)) {
+     farms <- rbind(farms, read.table(files[i], header = TRUE))
 }
 ```
 
-Maybe instead of splitting the file into 16 herds you can split into 3 datasets that we have to stick together?
+Now the `farms` data.frame has `r nrow(farms)` rows and contains the
+16 farms. Don't worry about the loop part of this lesson too much, the
+important thing is to understand that you can append two or many
+dataframes.
+
+
+
+##Now you try:
+
+* Explore the two data.frames defined below
+* Create a new data.frame with the result of appending `a` and `b`
+* Confirm that your new data.frame is as you would expect.
+
+```{r, comment = FALSE}
+
+a <- data.frame("species" = c("monkey", "chicken", "mouse", "elephant", "horse", "albatross"),
+                "count" = c(2,4,5,6,3,4),
+                "date" = as.Date(c("2015-11-25", "2015-11-26", "2015-10-20", "2015-09-15", "2015-08-04", "2015-10-16")),
+                stringsAsFactors = FALSE)
+
+b <- data.frame( "date" = as.Date(c("2015-10-20", "2015-09-15", "2015-08-04", "2015-10-16")),
+                 "count" = c(2,4,3,4),
+                 "species" = c("human", "pelican", "camel", "dog"),
+                stringsAsFactors = FALSE)
+
+```
