@@ -12,3 +12,9 @@ output:
 ---
 
 # Where to find resources for your next step in learning to use R
+
+http://adv-r.had.co.nz/
+
+http://www.revolutionanalytics.com/r-language-resources
+
+[R for Stata Users](http://link.springer.com/book/10.1007%2F978-1-4419-1318-0)
