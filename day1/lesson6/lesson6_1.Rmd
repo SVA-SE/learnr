@@ -270,3 +270,14 @@ ggplot(prediction2, aes(x = dtm, y = prob, group = ar_g1, colour = ar_g1)) +
     geom_line()
 
 ```
+
+## Now you try
+
+We are going to learn more about plotting with `ggplot2` in a later
+lesson so you don't need to focus on that, but feel free to explore.
+
+* Build a linear model with days to market as the outcome. You can
+  choose which associations you would like to explore. Keep in mind
+  that the `family` argument of the regression function will no longer
+  be `binomial`.
+* Try with and without a random intercept
