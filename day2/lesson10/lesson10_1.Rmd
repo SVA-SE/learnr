@@ -13,11 +13,12 @@ output:
 
 # How to find and use R extensions (packages)
 
-R extensions are available to you right in R studio. As we have done
-early in the course material we can install a package in R-studio as
-well as load a package into the current working environment. Let's
-first just assume that you don't have R-studio to help you with
-this. Then you would install a package like this:
+R extensions (called packages or libraries) are available to you right
+in R studio. As we have done early in the course material we can
+install a package in R-studio as well as load a package into the
+current working environment. Let's first just assume that you don't
+have R-studio to help you with this. Then you would install a package
+like this:
 
 ```{r, comment = NA, eval = FALSE}
 
@@ -26,5 +27,14 @@ install.packages("EpiContactTrace")
 ```
 
 R asks you during this process from which server you would like to
-download the package. Usually you can just pick the first one.
+download the package. Usually you can just pick the first one. After
+you have installed the package you need to load the package, there's a button for this in R studio but again if you just have R then you do the following:
 
+```{r, comment = NA, eval = FALSE}
+
+library("EpiContactTrace")
+
+```
+
+R packages are extensions to the base functionality of R. Many
+functionalities that you need 
