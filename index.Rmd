@@ -53,7 +53,7 @@ output:
     * 7.1 [How to plot your data](day1/lesson7/lesson7_1.html)
 * 8 Demonstration of interactive and dynamic plotting and mapping in R
     * 8.1 [DataTables](day1/lesson8/lesson8_1.html)
-    * 8.2 [TBD](day1/lesson8/lesson8_2.html)
+    * 8.2 [Leaflet interactive maps](day1/lesson8/lesson8_2.html)
     * 8.3 [TBD](day1/lesson8/lesson8_3.html)
 
 ### Day 2
