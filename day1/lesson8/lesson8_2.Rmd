@@ -11,16 +11,25 @@ output:
 
 ---
 
-# DataTables
+# Leaflet
 
-[DataTables](http://rstudio.github.io/DT/) displays R matrices or data
-frames as interactive HTML tables that support filtering, pagination,
-and sorting.
+You can also create interactive maps that support panning, zooming and
+annotations.
 
 ```{r, comment = NA}
-library(DT)
+library(leaflet)
 
-my_data <- read.csv("prewmort.csv")
+## Read farm data
+farms <- read.csv("farm_level.csv")
 
-datatable(my_data, options = list(pageLength = 10))
+## Create leaflet map
+m <- leaflet()
+m <- addTiles(m)
+m <- addCircleMarkers(m,
+                      lng   = farms$long,
+                      lat   = farms$lat,
+                      popup = paste("Herd id: ", farms$herd),
+                      color = ifelse(farms$coli_vac == 1, "green", "red"),
+                      fill  = TRUE)
+m
 ```
