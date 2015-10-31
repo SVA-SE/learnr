@@ -28,7 +28,9 @@ install.packages("EpiContactTrace")
 
 R asks you during this process from which server you would like to
 download the package. Usually you can just pick the first one. After
-you have installed the package you need to load the package, there's a button for this in R studio but again if you just have R then you do the following:
+you have installed the package you need to load the package, there's a
+button for this in R studio but again if you just have R then you do
+the following:
 
 ```{r, comment = NA, eval = FALSE}
 
@@ -36,5 +38,57 @@ library("EpiContactTrace")
 
 ```
 
-R packages are extensions to the base functionality of R. Many
-functionalities that you need 
+R packages are extensions to the base functionality of R. A Package is
+a group of functions that are written by a developer and bundled in a
+way that you can install and use them easily in R. If you a STATA
+user, then R packages are analogous to the STATA ".ado" packages that
+are available when you run FINDIT in STATA.
+
+When you install a package in R-studio using the buttons you will
+notice that one of the drop down boxes asks you from where you would
+like to install the package. "Repository (CRAN)" is the first
+choice. CRAN is a collection of R packages written and maintained by
+your colleagues. It is not the only place that you can get R
+packages. Two other common sources of R packages are "Bioconductor"
+and "GitHub". Bioconductor has many packages that focus on Ecology and
+genetics and like CRAN is a source of packages that you can easily
+install with the method above. On GitHub, you may find R-packages that
+are under development and have not yet been submitted to CRAN or fully
+developed work, however these packages may require a build process to
+use that can be slightly more involved than sourcing from CRAN.
+
+Today there are approximately 7000 packages available on CRAN alone,
+so you may wonder where to start when determining what you need to
+solve your problem. Again if you are a STATA user you would probably
+start with the manuals. The 'manuals' for R are much more extensive,
+accessible but also distributed than the STATA manuals. The R manuals
+are the sum of the documentation of all of the functions of R and its
+packages as well as the body of knowledge in scientific publications,
+online forums and books written about R. Because of the distributed
+and open nature of the R ecosystem, you need to search the internet
+for resources.
+
+* R Task-View
+    * This is a set of themes or classifications of analysis,
+      datamanagment, visualization and others, in which many R
+      packages listed on CRAN are categorized. This will give you a
+      starting point to explore packages that are in a theme that you
+      need.
+* R-bloggers
+    * This is a syndication of blogs from the web that are about the
+      use of R. Often you will find small examples of tasks completed
+      with new or existing packages or solutions to problems that
+      someone would like to illustrate.
+* Stack-Overflow
+    * This is a great resource of questions, answers and discussion of
+      likely every problem that you will encounter. You can also
+      submit your own questions to Stack-Overflow and often a member
+      of the community will give you suggestions very quickly.
+
+## Now you try
+
+* Have a look at R task View, R bloggers, and Stackoverflow.
+
+* Try to find a package that solves a problem in your work, can you find any good examples on R bloggers?
+
+* What do you find with a google search on you subject?

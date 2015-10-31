@@ -12,3 +12,15 @@ output:
 ---
 
 # Install a package
+
+Installing a package in R-Studio from CRAN only requires that you have
+an internet connection and that you choose 'Packages' in the bottom
+right pane followed by 'install-packages'. Type the name of the
+package that you would like to install in the name of package
+field. Click 'Install'
+
+If you wish to install a package from Github then often the Github
+page associated with the project will have instructions about how to
+install the package. The process is to **"install an R package from
+source"** and may require installation of some other tools that just R
+and R studio.
