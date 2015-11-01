@@ -26,15 +26,17 @@ library(leaflet)
 farms <- read.csv("farm_level.csv")
 
 ## Create leaflet map
-m <- leaflet()
-m <- addTiles(m)
-m <- addCircleMarkers(m,
-                      lng   = farms$long,
-                      lat   = farms$lat,
-                      popup = paste("Herd id: ", farms$herd),
-                      color = ifelse(farms$coli_vac == 1, "green", "red"),
-                      fill  = TRUE)
-m
+map <- leaflet()
+map <- addTiles(map)
+map <- addCircleMarkers(map,
+                        lng   = farms$long,
+                        lat   = farms$lat,
+                        popup = paste("Herd id: ", farms$herd),
+                        color = ifelse(farms$coli_vac == 1, "green", "red"),
+                        fill  = TRUE)
+
+## Plot
+map
 ```
 
 # Create a choropleth
@@ -55,16 +57,19 @@ library(leaflet)
 ## Load the map over Sweden
 load("Sweden.RData")
 
+## Create color palette with 5 levels.
 pal <- colorQuantile("YlGn", NULL, n = 5)
 
-m <- leaflet(Sweden)
-m <- addTiles(m)
-m <- addPolygons(m,
-                 fillColor = ~pal(Sweden@data$SHAPE_Area),
-                 color = "#BDBDC3",
-                 stroke = FALSE,
-                 fillOpacity = 0.5,
-                 smoothFactor = 0.5,
-                 popup = Sweden@data$Region)
-m
+## Create choropleth that color each region by the size of the region.
+map <- leaflet(Sweden)
+map <- addTiles(map)
+map <- addPolygons(map,
+                   fillColor = ~pal(Sweden@data$SHAPE_Area),
+                   stroke = FALSE,
+                   fillOpacity = 0.5,
+                   smoothFactor = 0.5,
+                   popup = Sweden@data$Region)
+
+## Plot map
+map
 ```
