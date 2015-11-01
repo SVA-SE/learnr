@@ -14,7 +14,10 @@ output:
 # Leaflet
 
 You can also create interactive maps that support panning, zooming and
-annotations.
+annotations. The `leaflet` R package uses the JavaScript
+[Leaflet](http://leafletjs.com/) library under the hood.
+
+http://rstudio.github.io/leaflet/
 
 ```{r, comment = NA}
 library(leaflet)
@@ -31,5 +34,37 @@ m <- addCircleMarkers(m,
                       popup = paste("Herd id: ", farms$herd),
                       color = ifelse(farms$coli_vac == 1, "green", "red"),
                       fill  = TRUE)
+m
+```
+
+# Create a choropleth
+
+http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units
+
+For this demonstration we'll use a map (shapefile) that we downloaded
+from Eurostat (© EuroGeographics for the administrative boundaries)
+http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units
+
+We have extracted the Swedish NUTS 2 level (Nomenclature of
+Territorial Units for Statistics) and added the Swedish name for each
+region.
+
+```{r, comment = NA}
+library(leaflet)
+
+## Load the map over Sweden
+load("Sweden.RData")
+
+pal <- colorQuantile("YlGn", NULL, n = 5)
+
+m <- leaflet(Sweden)
+m <- addTiles(m)
+m <- addPolygons(m,
+                 fillColor = ~pal(Sweden@data$SHAPE_Area),
+                 color = "#BDBDC3",
+                 stroke = FALSE,
+                 fillOpacity = 0.5,
+                 smoothFactor = 0.5,
+                 popup = Sweden@data$Region)
 m
 ```
