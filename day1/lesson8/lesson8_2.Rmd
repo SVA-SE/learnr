@@ -6,7 +6,7 @@ output:
 
 [![Previous](../../img/previous.png)](lesson8_1.html)
 [![Index](../../img/home.png)](../../index.html)
-[![Next](../../img/next.png)](lesson8_3.html)
+[![Next](../../img/next.png)](../../day2/lesson9/lesson9_1.html)
 [![Folder](../../img/folder.png)](./)
 
 ---
