@@ -11,5 +11,210 @@ output:
 
 ---
 
-
 # [ggplot2](http://docs.ggplot2.org/current/index.html)
+
+In this tutorial we will run examples and discuss how to build plots
+using ggplot2. We will not document the exact methods in great detail
+because there are already so many great tutorials on ggplot methods
+available online.
+
+## Some good tutorials
+
+* [A tutorial by Hadley Wickham](http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf)
+
+* http://www.statmethods.net/advgraphs/ggplot2.html
+
+* [Using qplot](http://blog.echen.me/2012/01/17/quick-introduction-to-ggplot2/)
+
+* http://www.noamross.net/blog/2012/10/5/ggplot-introduction.html
+
+* [Jenny Bryan's ggplot tutorial](https://github.com/jennybc/ggplot2-tutorial)
+
+## The basics
+
+We will work through some examples taken from Jenny Bryans tutorial.
+`ggplot` is a syntax that allows you to build plot from dataframes in
+R. It is a stepwise method where you start with a simple plot and then
+add to it the features that you want.
+
+
+## Load some data
+
+We'll use data that is in a package called `gapminder`
+
+```{r, comment = NA, message =FALSE}
+library(ggplot2)
+library(gapminder)
+str(gapminder)
+``` 
+
+Feel free to explore the data however you see fit. Here is the basic structure of the call to `ggplot`
+
+```{r, comment = NA, eval = FALSE} 
+
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp))
+
+```
+
+Above you define a plot which dataframe to plot (`gapminder`) and the
+variables that you would like to use on the x (`gdpPercap`) and y
+(`lifeExp`) axes. Note that you don't have to use quotation marks
+around the variable names.  But... **No graph**.  You have only
+defined the data source for the graph so far. A good idea now is to
+put that definition in a new object and then start adding to it, call
+it the initialized plot:
+
+```{r, comment = NA, message =FALSE}
+
+p <- ggplot(gapminder, aes(x = gdpPercap, y = lifeExp))
+
+```
+
+Now we will actually get a plot when we ask for the first layer:
+
+```{r, comment = NA, message =FALSE} 
+p + geom_point()
+
+p + layer(geom = "point")
+
+```
+
+The above produce the same plots, in some cases you may wish to use
+one syntax over the other but either is fine.
+
+The same thing could have been achieved by running the plot
+initialization with the first layer. Like this:
+
+```{r, comment = NA, message =FALSE}
+
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
+    geom_point()
+
+```
+
+The `ggplot` syntax is built on this pieces of the puzzle separated by
+the plus (`+`) operator. Like all things in R you can go to a new line
+whenever you like and it makes sense to do this at the `+`.
+
+We can change the scale of the x-axis if we want:
+
+```{r, comment = NA, message =FALSE}
+
+p + geom_point() + scale_x_log10()
+
+```
+
+Then if you want to add the log scale to you plot, you can make it
+stick by just redefining `p`
+
+```{r, comment = NA, message =FALSE}
+p <- p + scale_x_log10()
+```
+
+We have another variable `continent` in the dataset that we can use to
+colourize the points. We are added to the pre-existing definition of
+`aes`, with the argument `color` and the variable we want to colour by is `continent`
+
+```{r, comment = NA, message =FALSE}
+p + geom_point(aes(color = continent))
+```
+
+You could also affect the transparency of the points in the
+`geom_point()` by doing the following to make it possible to visualize
+overlapping point intensity.
+
+```{r, comment = NA, message =FALSE}
+p + geom_point(alpha = (1/3), size = 3)
+```
+
+You can quickly add a smooth line that represents the points as well
+
+```{r, comment = NA, message =FALSE}
+p + geom_point() + geom_smooth()
+```
+
+Try these two:
+
+```{r, comment = NA, eval = FALSE}
+p + geom_point() + geom_smooth(lwd = 3, se = FALSE)
+p + geom_point() + geom_smooth(lwd = 3, se = FALSE, method = "lm")
+```
+
+Try to add the continent variable back
+
+```{r, comment = NA, eval = FALSE}
+p + aes(color = continent) + geom_point() + geom_smooth(lwd = 3, se = FALSE)
+```
+
+## Facetting:
+
+Often you need to look at parallel plots of your data, split by one of your variables. Instead of colouring the lines or points by the `continent` variable, we will split with `facet_wrap`
+
+```{r, comment = NA, message =FALSE}
+p + geom_point(alpha = (1/3), size = 3) + facet_wrap(~ continent) +
+  geom_smooth(lwd = 2, se = FALSE)
+```
+
+** Now you try
+
+* Make a plot of `lifeExp` against year.
+
+* make sub-plots, split by continent of the figure you just created 
+
+* add a fitted smooth to your plot or plots
+
+```{r, eval = FALSE, echo = FALSE}
+#' plot lifeExp against year
+(y <- ggplot(gapminder, aes(x = year, y = lifeExp)) + geom_point())
+
+#' make mini-plots, split out by continent
+y + facet_wrap(~ continent)
+
+#' add a fitted smooth and/or linear regression, w/ or w/o facetting
+y + geom_smooth(se = FALSE, lwd = 2) +
+  geom_smooth(se = FALSE, method ="lm", color = "orange", lwd = 2)
+
+y + geom_smooth(se = FALSE, lwd = 2) +
+  facet_wrap(~ continent)
+
+```
+
+## let just look at four countries
+
+```{r, comment = NA, message =FALSE}
+
+jCountries <- c("United Kingdom",
+                "Australia",
+                "Sweden" ,
+                "New Zealand",
+                "United States",
+                "Canada",
+                "Switzerland")
+
+gapminder2 <- subset(gapminder, country %in% jCountries)
+
+ggplot(gapminder2,aes(x = year, y = lifeExp, color = country)) +
+    geom_line() +
+    geom_point()
+
+```
+
+# Now you try again.
+
+* Load the "pig\_adg_.csv" dataset and plot something interesting from it:
+
+    * Use `read.csv` to read in the data
+	* Think about which variables you can plot and which you could
+      colour by or use for "faceting"
+	* Try "facet.grid" with `sex` and `lu` as the grid.
+
+```{r, comment = NA, echo = FALSE, eval = FALSE}
+
+df <- read.csv2("pig_adg.csv")
+
+p <- ggplot(df, aes(y = dtm, x = adg)) +
+    geom_smooth() + facet_grid(sex ~ lu)
+
+p
+
+```
