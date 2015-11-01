@@ -6,7 +6,7 @@ render:
 	Rscript -e "library(readxl)"
 	Rscript -e "library(lme4)"
 	Rscript -e "library(epitools)"
-
+	Rscript -e "library(leaflet)"
 	pandoc --self-contained -o README.html  README.md
 	Rscript -e "library(rmarkdown); rmarkdown::render('index.Rmd')"
 	Rscript -e "library(rmarkdown); rmarkdown::render('about_datasets.Rmd')"

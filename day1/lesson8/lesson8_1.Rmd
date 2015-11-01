@@ -13,9 +13,12 @@ output:
 
 # DataTables
 
-[DataTables](http://rstudio.github.io/DT/) displays R matrices or data
-frames as interactive HTML tables that support filtering, pagination,
-and sorting.
+With R it is easy to create interactive visualisations that can be
+viewed in a browser or embedded in R markdown reports. It only takes a
+few lines of code. Lets first demonstrate an interactive data table
+that support filtering, pagination and sorting.
+
+http://rstudio.github.io/DT/
 
 ```{r, comment = NA}
 library(DT)
@@ -24,4 +27,3 @@ my_data <- read.csv("prewmort.csv")
 
 datatable(my_data, options = list(pageLength = 10))
 ```
-
