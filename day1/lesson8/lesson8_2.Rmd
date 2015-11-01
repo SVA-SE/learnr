@@ -17,7 +17,15 @@ You can also create interactive maps that support panning, zooming and
 annotations. The `leaflet` R package uses the JavaScript
 [Leaflet](http://leafletjs.com/) library under the hood.
 
+
+You can read more about this method here:
 http://rstudio.github.io/leaflet/
+
+## Point map
+
+The point map of some farms and add a colour to the points based on a
+variable in a dataframe. We have the x, y locations of the farms as
+well as the other covariate information stored in the same dataframe.
 
 ```{r, comment = NA}
 library(leaflet)
@@ -41,7 +49,7 @@ map
 
 # Create a choropleth
 
-http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units
+
 
 For this demonstration we'll use a map (shapefile) that we downloaded
 from Eurostat (© EuroGeographics for the administrative boundaries)
@@ -49,7 +57,9 @@ http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-uni
 
 We have extracted the Swedish NUTS 2 level (Nomenclature of
 Territorial Units for Statistics) and added the Swedish name for each
-region.
+region. The format of the data that we load in "Sweden.RData" is a
+called a "Spatial polygon dataframe" and is the R equivalent to a
+shapefile.
 
 ```{r, comment = NA}
 library(leaflet)
@@ -57,10 +67,11 @@ library(leaflet)
 ## Load the map over Sweden
 load("Sweden.RData")
 
-## Create color palette with 5 levels.
+## Create a means to generate colour levels.
 pal <- colorQuantile("YlGn", NULL, n = 5)
 
-## Create choropleth that color each region by the size of the region.
+## Create choropleth that colors each region by the size of the region.
+
 map <- leaflet(Sweden)
 map <- addTiles(map)
 map <- addPolygons(map,
@@ -73,3 +84,4 @@ map <- addPolygons(map,
 ## Plot map
 map
 ```
+In the example above we use the Area of the polygon as an example of a number that could affect the colour of the polygon in the map. You could merge any data that you have at the region level into you spatial polygon dataframe and use that information as your `fillColor` argument.

@@ -16,9 +16,15 @@ output:
 With R it is easy to create interactive visualisations that can be
 viewed in a browser or embedded in R markdown reports. It only takes a
 few lines of code. Lets first demonstrate an interactive data table
-that support filtering, pagination and sorting.
+that support filtering, pagination and sorting. This can be a great
+way of embedding longer tables in a report and allowing the reader to
+explore the information themselves.
+
+You can read more about this technique here:
 
 http://rstudio.github.io/DT/
+
+
 
 ```{r, comment = NA}
 library(DT)
