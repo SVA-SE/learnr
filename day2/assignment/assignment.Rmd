@@ -1,0 +1,82 @@
+---
+output:
+    html_document:
+        css: ../../style.css
+---
+
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 120)
+```
+
+# Practical task
+
+In the current folder you have three datasets.
+
+* farm_level.csv
+
+* prewmort_a.csv
+
+* prewmort_b.csv
+
+
+Try some of the following tasks. You may wish to try to do this in an
+Rmarkdown file in order to generate a report of your results or use an
+R-script to do the analysis.
+
+## Basic tasks
+
+1. Explore the datasets. You will notice that two are at the
+litter-level and one is at the farm-level. Join these datasets
+together into one dataset.
+
+2. Does your merging result in any missing values?
+
+3. Are there farms that are in the farm_level dataset that are not in
+the litter level dataset?
+
+4. Investigate the effect of year on percent stillbirth in the litter. (model or graph)
+
+5. Drop the observations from 1990
+
+6. Generate a plot that can help you to understand the relationship
+  between sow treatment and preweaning mortality. Is this relationship
+  the same for different parities?
+
+
+
+## Extra tasks:
+
+1. Use the `plyr` package and the `ddply` function to count the number of observations within each level of a categorical variable. Try completing another operation on each piece of the collapsed dataframe.
+
+The syntax is as follows:
+
+```{r, comment = NA, eval =FALSE}
+library(plyr)
+ddply(.data, .var, .function)
+
+```
+
+2. In the third argument of the `ddply` function you gave a `function` as an argument. Part of the more advanced use of R is to organize your code into functions. Here is an example of a function that adds two numbers:
+
+```{r, comment = NA}
+
+my_function <- function(x, y){
+
+    answer <- (x + y)
+    return(answer)
+    
+    }
+
+```
+
+Evaluate the code above and try your new function:
+
+```{r, comment = NA}
+
+my_function(2,4)
+
+```
+
+
+a. Write a function that squares a single number, it will take a single argument
+b. Write a function that runs multiple lines of code within the function and gives back the final result. Perhaps you would add and then multiply. 

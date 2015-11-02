@@ -1,0 +1,14 @@
+http://www.r-bloggers.com/
+
+http://www.springer.com/series/6991?detailsPage=titles
+
+https://www.crcpress.com/Chapman--HallCRC-The-R-Series/book-series/CRCTHERSER
+
+
+www.github.com
+
+If you wish to install packages from github then you need a toolset called 'Rtools'.
+
+
+https://www.bioconductor.org/
+
