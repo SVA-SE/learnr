@@ -45,11 +45,11 @@ plot(x = pig_adg$adg, y = pig_adg$dtm)
 
 You get a scatter plot with the labels on the axis equal to the
 variable names. One of the default arguments that you do not see above is
-`type = "point"`. Let's try `type = "line"`
+`type = "p"`. Let's try `type = "l"`
 
 ```{r, comment = NA}
 
-plot(x = pig_adg$adg, y = pig_adg$dtm, type = "line")
+plot(x = pig_adg$adg, y = pig_adg$dtm, type = "l")
 ```
 
 That didn't make much sense. We should probably sort the data by the
@@ -58,7 +58,7 @@ x- variable first
 ```{r, comment = NA}
 
 df <- pig_adg[order(pig_adg$adg),]
-plot(x = df$adg, y = df$dtm, type = "line")
+plot(x = df$adg, y = df$dtm, type = "l")
 
 ```
 
@@ -91,7 +91,7 @@ Above you already saw the scatter plot.
 ```{r, comment = NA}
 
 plot(x = pig_adg$adg, y = pig_adg$dtm,
-     type = "point", pch = 20
+     type = "p", pch = 20
      )
 ```
 
@@ -121,7 +121,7 @@ a colour in [hexadecimal format](http://www.w3schools.com/tags/ref_colorpicker.a
 ```{r, comment = NA}
 
 plot(x = pig_adg$adg, y = pig_adg$dtm,
-     type = "point", pch = 20, col = "red"
+     type = "p", pch = 20, col = "red"
      )
 
 ```
@@ -131,7 +131,7 @@ We can change the axis titles.
 ```{r, comment = NA}
 
 plot(x = pig_adg$adg, y = pig_adg$dtm,
-     type = "point", pch = 20, col = "#E60000",
+     type = "p", pch = 20, col = "#E60000",
      xlab = "Average daily gain (grams)",
      ylab = "Days to market"
      )
@@ -147,7 +147,7 @@ as well.
 ```{r, comment = NA}
 
 plot(x = pig_adg$adg, y = pig_adg$dtm,
-     type = "point", pch = 20, col = "#E60000",
+     type = "p", pch = 20, col = "#E60000",
      xlab = "Average daily gain (grams)",
      ylab = "Days to market",
      yaxt = "n", xaxt = "n"
@@ -181,18 +181,18 @@ predict_data <- data.frame("adg" = seq(min(pig_adg$adg), max(pig_adg$adg)))
 predict_data$prediction_dtm <- predict(model, predict_data)
 
 ```
-So now we have a dataset and can plot a line
+So now we have a dataset and can plot a l
 
 ```{r, comment = NA}
 plot(x = predict_data$adg, y = predict_data$prediction_dtm,
-     type = "line", lwd = 2, col = "red",
+     type = "l", lwd = 2, col = "red",
      xlab = "Average daily gain (grams)",
      ylab = "Days to market")
 
 ```
 
 Here we define the plot in much the same way as the `point` plot but
-use `type = "line"` and introduce another parameter specific to the
+use `type = "l"` and introduce another parameter specific to the
 `line` plot which is `lwd` or line weight. In this case 2 gives a
 slightly thicker line than the default 1.
 
@@ -204,7 +204,7 @@ overlaying the line.
 
 plot(x    = pig_adg$adg,
      y    = pig_adg$dtm,
-     type = "point",
+     type = "p",
      pch  = 20, col = "#E60000",
      xlab = "Average daily gain (grams)",
      ylab = "Days to market",
@@ -348,7 +348,7 @@ data_male   <- predict_data[predict_data$sex == "male",]
 
 
 plot(x = data_female$prediction_dtm, y =  data_female$adg,
-     type = "line", lwd = 2, col = "red",
+     type = "l", lwd = 2, col = "red",
      xlab = "Average daily gain (grams)",
      ylab = "Days to market")
 

@@ -65,7 +65,7 @@ easily with the `epitools` library
 
 ## Contingency table
 
-```{r, warning = FALSE}
+```{r, warning = FALSE, comment = NA}
 library(epitools)
 
 crosstab <- epitab(pig_adg$pn, pig_adg$ar_g1, pvalue = "chi2")
@@ -88,7 +88,7 @@ we will do the regression without the random effect:
 
 ## Mixed effects logistic regression
 
-```{r, warning = FALSE, message = FALSE}
+```{r, warning = FALSE, message = FALSE, comment = NA}
 
 model <- glm(pn ~ ar_g1, data = pig_adg, family = binomial)
 
@@ -110,7 +110,7 @@ e^`r model$coefficients[2]`^ = `r exp(model$coefficients[2])`
 Let's now add the random effect for farm, we need to use another
 library `lme4` library to do this.
 
-```{r, warning =FALSE, message = FALSE}
+```{r, warning =FALSE, message = FALSE, comment = NA}
 
 library(lme4)
 
