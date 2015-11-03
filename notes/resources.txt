@@ -1,14 +1,21 @@
-http://www.r-bloggers.com/
 
-http://www.springer.com/series/6991?detailsPage=titles
+Here are a few sites that we talked about during the discussion on
+finding resources to help you with R in the future:
 
-https://www.crcpress.com/Chapman--HallCRC-The-R-Series/book-series/CRCTHERSER
+[R bloggers](http://www.r-bloggers.com/) - A syndication of many other
+blog posts that are themed about R. 
 
 
-www.github.com
+[http://www.springer.com/series/6991?detailsPage=titles](Springer book series on R)
+
+[https://www.crcpress.com/Chapman--HallCRC-The-R-Series/book-series/CRCTHERSER](Chapman book series on R)
+
+
+[www.github.com](GitHub) - A code sharing web repository for all things open source. Here you will find some R packages that are not available from CRAN
 
 If you wish to install packages from github then you need a toolset called 'Rtools'.
 
 
-https://www.bioconductor.org/
+
+[https://www.bioconductor.org/](Bioconductor) - A resource for Ecology and genetics tools for R
 

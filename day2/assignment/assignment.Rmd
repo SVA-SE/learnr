@@ -4,6 +4,8 @@ output:
         css: ../../style.css
 ---
 
+password: celestun
+
 ```{r set-options, echo=FALSE, cache=FALSE}
 options(width = 120)
 ```
