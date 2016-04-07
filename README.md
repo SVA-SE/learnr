@@ -1,8 +1,3 @@
-WIFI connection:
-
-Username: 
-Password: izamal
-
 # Introduction to R
 
 ## Biography of Thomas and Stefan

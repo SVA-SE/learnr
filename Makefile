@@ -8,6 +8,7 @@ render:
 	Rscript -e "library(epitools)"
 	Rscript -e "library(leaflet)"
 	pandoc --self-contained -o README.html  README.md
+	pandoc --self-contained -o ECVPH_advertisement.html ECVPH_advertisement.md
 	Rscript -e "library(rmarkdown); rmarkdown::render('index.Rmd')"
 	Rscript -e "library(rmarkdown); rmarkdown::render('about_datasets.Rmd')"
 	cd day1; make
