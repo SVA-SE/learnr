@@ -1,5 +1,8 @@
 # Introduction to R
 
+## Follow the tutorial
+[Tutorial webpages](https://sva-se.github.io/learnr/)
+
 ## Biography of Thomas and Stefan
 
 Dr. Stefan Widgren is a veterinary epidemiologist at the Swedish
